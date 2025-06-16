@@ -573,18 +573,9 @@ Al completar los 365 días, habrás:
 
 La industria necesita profesionales que entiendan la tecnología desde ambos lados. Las organizaciones buscan desesperadamente individuos que puedan tanto construir sistemas robustos como identificar sus debilidades antes que los atacantes.
 
-**¿Serás uno de los pocos que domine ambos mundos?**
-
-El programa **Hacklab365** no es para todos. Está diseñado para individuos con la disciplina para dedicar 2 horas diarias durante 365 días consecutivos a su transformación profesional. Si estás dispuesto a hacer esa inversión en ti mismo, el retorno será exponencial.
 
 ---
 
-<div align="center">
-  <h3>🚀 La Élite Tecnológica Te Está Esperando</h3>
-  <p><em>"En un mundo donde la seguridad es crítica, los que dominan tanto la construcción como la penetración de sistemas se convierten en los arquitectos del futuro digital."</em></p>
-</div>
-
----
 
 <div align="center">
   <small>Copyright © 2025 - Darko-ltk - Todos los derechos reservados</small>
