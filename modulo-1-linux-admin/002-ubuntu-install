@@ -1,0 +1,318 @@
+DÍA 2: INSTALACIÓN Y CONFIGURACIÓN INICIAL DE UBUNTU SERVER
+
+Objetivo: Instalar Ubuntu Server 22.04 LTS y realizar la configuración inicial del sistema
+
+PROCESO DE INSTALACIÓN UBUNTU SERVER
+Paso 1: Iniciar la Máquina Virtual
+    1. Abre VirtualBox y selecciona tu VM "Ubuntu-Server-Lab01"
+    2. Verifica la configuración:
+        ◦ ISO de Ubuntu Server montado en unidad óptica
+        ◦ 4GB RAM asignados
+        ◦ 50GB de disco configurado
+        ◦ Red en modo NAT
+    3. Inicia la máquina virtual haciendo clic en "Iniciar"
+Paso 2: Proceso de Instalación Guiado
+Pantalla de bienvenida:
+    • Selecciona idioma: English (recomendado para entornos profesionales)
+    • ¿Por qué inglés? Documentación, logs y mensajes de error están en inglés
+Configuración de teclado:
+    • Selecciona tu distribución de teclado local
+    • Prueba escribiendo caracteres especiales para verificar
+Tipo de instalación:
+    • Selecciona "Ubuntu Server" (no "Ubuntu Server (minimized)")
+    • ¿Por qué no minimized? Necesitamos herramientas completas para aprendizaje
+Configuración de red:
+    • DHCP automático: Acepta la configuración por defecto
+    • Dirección IP: Anota la IP asignada (ej: 10.0.2.15)
+    • Gateway: Anota el gateway (ej: 10.0.2.2)
+Paso 3: Configuración de Almacenamiento
+Particionado guiado:
+    • Selecciona "Use an entire disk"
+    • Disco objetivo: Selecciona el disco virtual de 50GB
+    • Esquema de particiones: LVM (Logical Volume Manager)
+¿Por qué LVM?
+    • Flexibilidad: Redimensionar particiones sin downtime
+    • Snapshots: Copias de seguridad instantáneas
+    • Múltiples discos: Agregar almacenamiento dinámicamente
+    • Estándar empresarial: Usado en el 78% de servidores Linux
+Confirmación del particionado:
+    • Revisa el esquema propuesto
+    • Particiones típicas:
+        ◦ /boot - 1GB (arranque del sistema)
+        ◦ / - 48GB (sistema raíz)
+        ◦ swap - 1GB (memoria virtual)
+Paso 4: Configuración de Usuario
+Información del perfil:
+    • Nombre completo: Tu nombre real
+    • Nombre del servidor: ubuntu-server-lab01
+    • Nombre de usuario: admin (recomendado para laboratorio)
+    • Contraseña: Mínimo 12 caracteres, mayúsculas, minúsculas, números y símbolos
+Ejemplo de contraseña segura: Lab2025!Secure#
+¿Por qué esta configuración?
+    • Usuario admin: Claramente identificable como administrador
+    • Contraseña compleja: Protección contra ataques de fuerza bruta
+    • Hostname descriptivo: Fácil identificación en red
+Paso 5: Configuración SSH
+¡CRÍTICO! Selecciona "Install OpenSSH server"
+¿Por qué es fundamental SSH?
+    • Administración remota: Gestión desde tu máquina host
+    • Transferencia de archivos: SCP, SFTP para mover archivos
+    • Túneles seguros: Port forwarding para servicios
+    • Automatización: Ansible, scripts remotos
+    • Estándar profesional: 100% de servidores empresariales usan SSH
+Configuración de claves SSH:
+    • Por ahora, NO importes claves SSH
+    • Configuraremos autenticación por clave más adelante
+Paso 6: Selección de Software
+Snaps sugeridos: Deja todo desmarcado por ahora
+¿Por qué no instalar software adicional?
+    • Instalación limpia: Mejor control sobre componentes
+    • Seguridad: Menor superficie de ataque
+    • Aprendizaje: Instalaremos manualmente cada servicio
+    • Documentación: Cada instalación será documentada
+Paso 7: Finalización de la Instalación
+    1. Progreso de instalación: Observa el proceso (15-30 minutos)
+    2. Actualización automática: El sistema descarga actualizaciones
+    3. Configuración final: Configuración de servicios base
+    4. Reinicio: Cuando aparezca "Reboot Now", presiona Enter
+    5. Retira el ISO: VirtualBox lo hace automáticamente
+🔧 CONFIGURACIÓN INICIAL POST-INSTALACIÓN
+Primer Acceso al Sistema
+Login inicial:
+ubuntu-server-lab01 login: admin
+Password: [tu-contraseña]
+
+Verificación del sistema:
+# Verificar información del sistema
+hostnamectl
+
+# Verificar usuario actual
+whoami
+
+# Verificar directorio actual
+pwd
+
+# Verificar fecha y hora
+date
+
+Actualización Completa del Sistema
+¿Por qué actualizar inmediatamente?
+    • Parches de seguridad: Vulnerabilidades corregidas
+    • Estabilidad: Bugs solucionados
+    • Compatibilidad: Drivers actualizados
+    • Buenas prácticas: Primer paso en cualquier servidor
+Comandos de actualización:
+# Actualizar lista de paquetes
+sudo apt update
+
+# Mostrar paquetes actualizables
+apt list --upgradable
+
+# Actualizar todos los paquetes
+sudo apt upgrade -y
+
+# Limpiar paquetes innecesarios
+sudo apt autoremove -y
+
+# Limpiar caché de paquetes
+sudo apt autoclean
+
+Explicación de cada comando:
+    • apt update: Descarga información de nuevas versiones
+    • apt upgrade: Instala las actualizaciones disponibles
+    • autoremove: Elimina dependencias no utilizadas
+    • autoclean: Libera espacio eliminando archivos temporales
+Verificación de Servicios Críticos
+SSH (Secure Shell):
+# Verificar estado del servicio SSH
+sudo systemctl status ssh
+
+# Verificar que SSH está escuchando
+sudo ss -tlnp | grep :22
+
+# Verificar configuración SSH
+sudo cat /etc/ssh/sshd_config | grep -E "Port|PermitRootLogin|PasswordAuthentication"
+
+Red y conectividad:
+# Verificar interfaces de red
+ip addr show
+
+# Verificar conectividad a internet
+ping -c 4 8.8.8.8
+
+# Verificar resolución DNS
+nslookup google.com
+
+# Verificar tabla de rutas
+ip route show
+
+CONFIGURACIÓN DE RED AVANZADA
+Entendiendo la Configuración de Red
+Netplan (Ubuntu 18.04+):
+Ubuntu Server utiliza Netplan para configuración de red declarativa.
+# Ver archivos de configuración de red
+ls -la /etc/netplan/
+
+# Ver configuración actual
+sudo cat /etc/netplan/00-installer-config.yaml
+
+Configuración típica NAT:
+network:
+  ethernets:
+    enp0s3:
+      dhcp4: true
+  version: 2
+
+¿Qué significa esta configuración?
+    • enp0s3: Interfaz de red (Ethernet PCI slot 0, función 3)
+    • dhcp4: true: Obtiene IP automáticamente vía DHCP
+    • version: 2: Versión de Netplan
+Configuración SSH Segura
+Archivo de configuración SSH:
+# Crear respaldo de configuración original
+sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup
+
+# Editar configuración SSH
+sudo nano /etc/ssh/sshd_config
+
+Configuraciones de seguridad básicas:
+# Cambiar puerto por defecto (opcional para laboratorio)
+Port 22
+
+# Deshabilitar login root directo
+PermitRootLogin no
+
+# Habilitar autenticación por contraseña (temporal)
+PasswordAuthentication yes
+
+# Límite de intentos de login
+MaxAuthTries 3
+
+# Tiempo límite de login
+LoginGraceTime 60
+
+Reiniciar SSH tras cambios:
+# Verificar configuración antes de reiniciar
+sudo sshd -t
+
+# Reiniciar servicio SSH
+sudo systemctl restart ssh
+
+# Verificar que está funcionando
+sudo systemctl status ssh
+
+ACCESO REMOTO DESDE EL HOST
+Configuración de Port Forwarding en VirtualBox
+Para acceder a tu servidor desde la máquina host:
+    1. Apaga la VM temporalmente
+    2. En VirtualBox: Configuración → Red → Avanzado → Reenvío de puertos
+    3. Añade nueva regla:
+        ◦ Nombre: SSH
+        ◦ Protocolo: TCP
+        ◦ IP anfitrión: 127.0.0.1
+        ◦ Puerto anfitrión: 2222
+        ◦ IP invitado: (vacío)
+        ◦ Puerto invitado: 22
+Conexión SSH desde el Host
+Desde Windows (usando PowerShell o WSL):
+ssh -p 2222 admin@127.0.0.1
+
+Desde Linux/macOS:
+ssh -p 2222 admin@localhost
+
+Primera conexión SSH:
+The authenticity of host '[localhost]:2222 ([127.0.0.1]:2222)' can't be established.
+ECDSA key fingerprint is SHA256:...
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+
+¿Qué significa este mensaje?
+    • Host key verification: SSH verifica la identidad del servidor
+    • Fingerprint: Huella digital única del servidor
+    • Responde "yes": Para añadir el servidor a hosts conocidos
+RECURSOS GRATUITOS PARA HOY
+Recurso Principal: Linux Journey - Command Line
+URL: https://linuxjourney.com/lesson/the-shell
+Módulos específicos para hoy:
+    • The Shell: Introducción al intérprete de comandos
+    • pwd (Print Working Directory): Conocer ubicación actual
+    • cd (Change Directory): Navegación entre directorios
+    • ls (List): Listar contenido de directorios
+Recurso Complementario: Ubuntu Server Guide
+URL: https://ubuntu.com/server/docs/installation
+Secciones relevantes:
+    • Installation: Proceso completo de instalación
+    • Network Configuration: Configuración de red con Netplan
+    • Package Management: Gestión de paquetes con APT
+Recurso de Configuración SSH
+URL: https://es.dade2.net/como-habilitar-el-servidor-ssh-en-ubuntu-22-04/
+Contenido clave:
+    • Instalación de OpenSSH Server
+    • Configuración básica de seguridad
+    • Verificación de servicios
+Documentación de Comandos
+URL: https://itsfoss.com/es/comandos-linux-esenciales/
+Comandos esenciales para hoy:
+    • Comandos de navegación básica
+    • Gestión de archivos fundamental
+    • Información del sistema
+🔍 COMANDOS BÁSICOS ESENCIALES
+Navegación del Sistema de Archivos
+# Mostrar directorio actual
+pwd
+
+# Listar contenido del directorio
+ls
+ls -l    # Lista detallada
+ls -la   # Incluye archivos ocultos
+ls -lh   # Tamaños legibles por humanos
+
+# Cambiar de directorio
+cd /home/admin    # Ir al directorio home
+cd ..             # Subir un nivel
+cd ~              # Ir al directorio home del usuario
+cd /              # Ir al directorio raíz
+
+Información del Sistema
+# Información del sistema operativo
+cat /etc/os-release
+
+# Información del kernel
+uname -a
+
+# Información de hardware
+lshw -short
+
+# Uso de memoria
+free -h
+
+# Uso de disco
+df -h
+
+# Procesos en ejecución
+ps aux
+
+# Información de red
+ip addr show
+
+Gestión Básica de Archivos
+# Crear directorio
+mkdir mi-directorio
+
+# Crear archivo vacío
+touch mi-archivo.txt
+
+# Ver contenido de archivo
+cat /etc/hostname
+
+# Ver primeras líneas
+head /var/log/syslog
+
+# Ver últimas líneas
+tail /var/log/syslog
+
+# Seguir un archivo en tiempo real
+tail -f /var/log/syslog
+
+
+📊 Progreso general: 2/365 días (0.55%)
+¡Tu servidor está listo y funcionando! Mañana comenzamos con la verdadera administración de sistemas. 
