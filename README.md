@@ -21,10 +21,11 @@ Para evaluar la metodología y calidad técnica del programa, ofrecemos acceso c
 
 <div align="center">
   <a href="https://github.com/Darko-ltk/hacklab365/tree/main/modulos/modulo-1-linux-admin">
-    <img src="https://img.shields.io/badge/🚀_EVALUAR_PROGRAMA-🐧_Módulo_Linux_Gratuito-blue?style=for-the-badge&logo=linux&logoColor=white&labelColor=darkblue" alt="Evaluar Programa">
+    <img src="https://img.shields.io/badge/🐧_SEMANA_1_GRATUITA-Fundamentos_Linux-success?style=for-the-badge&logo=linux&logoColor=white&labelColor=2E8B57" alt="Semana 1 Gratuita">
   </a>
+  <br>
+  <small><em>7 días de contenido profesional sin coste</em></small>
 </div>
-
 
 
 ---
