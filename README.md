@@ -31,7 +31,7 @@
 Para evaluar la metodología y calidad técnica del programa, ofrecemos acceso completo al contenido de la **Semana 1: Fundamentos de Sistemas Linux**. Este módulo incluye configuración de laboratorio, instalación de Ubuntu Server y administración básica del sistema.
 
 <div align="center">
-  <a href="https://github.com/Darko-ltk/hacklab365/tree/main/modulos/modulo-1-linux-admin">
+  <a href="https://github.com/Darko-ltk/De-Cero-a-Cloud-Security-Engineer/tree/391822a69ed53994ee9c2f3c5359e1236c10e6a0/modulo-1-linux-admin">
     <img src="https://img.shields.io/badge/🐧_Acceder_al_Contenido_Gratuito-Linux_Admin-2E8B57?style=for-the-badge&logo=linux&logoColor=white" alt="Acceder al Contenido Gratuito">
   </a>
 </div>
@@ -588,7 +588,7 @@ La industria necesita profesionales que entiendan la tecnología desde ambos lad
 
 <!-- Sección de contenido gratuito para futura implementación -->
 <div align="center">
-  <a href="https://github.com/Darko-ltk/hacklab365/tree/main/modulos/modulo-1-linux-admin">
+  <a href="https://github.com/Darko-ltk/De-Cero-a-Cloud-Security-Engineer/tree/391822a69ed53994ee9c2f3c5359e1236c10e6a0/modulo-1-linux-admin">
     <img src="https://img.shields.io/badge/🐧_Acceder_al_Contenido_Gratuito-Linux_Admin-2E8B57?style=for-the-badge&logo=linux&logoColor=white" alt="Acceder al Contenido Gratuito">
   </a>
 </div>
