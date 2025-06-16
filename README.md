@@ -12,16 +12,6 @@
     <strong> Programa intensivo de 12 meses para la formación de Cloud Security Engineers </strong>
       
   </p>
-</div>
-
-<div align="center">
-  <img src="https://img.shields.io/badge/Status-Production_Ready-success" alt="Status">
-  <img src="https://img.shields.io/badge/Version-2025.1.0-blue" alt="Version">
-  <img src="https://img.shields.io/badge/License-Proprietary-red" alt="License">
-  <a href="https://www.linkedin.com/in/tu-perfil/">
-    <img src="https://img.shields.io/badge/Contact-LinkedIn-0077B5" alt="LinkedIn">
-  </a>
-</div>
 
 ---
 
@@ -31,7 +21,7 @@ Para evaluar la metodología y calidad técnica del programa, ofrecemos acceso c
 
 <div align="center">
   <a href="#semana-1-contenido-de-evaluación">
-    <img src="https://img.shields.io/badge/Acceder_al_Contenido_de_Evaluación-2E8B57?style=flat&logo=linux" alt="Contenido de Evaluación">
+    <img src="https://github.com/Darko-ltk/De-Cero-a-Cloud-Security-Engineer/tree/f367d675a0b01eff04900a82ba2a200be318071b/modulo-1-linux-admin" alt="Contenido de Evaluación">
   </a>
 </div>
 
