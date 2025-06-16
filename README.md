@@ -64,157 +64,793 @@ El programa prepara para la obtención de 5 certificaciones reconocidas en la in
 
 ## Programa de Estudios Detallado
 
-El programa está estructurado en 4 trimestres de especialización técnica progresiva. Cada sección puede expandirse para revisar el contenido específico por día.
+El programa está estructurado en 4 módulos de especialización técnica progresiva, distribuidos en 12 meses y 365 días de contenido. Cada sección puede expandirse para revisar el contenido específico.
+
+<details open>
+<summary><strong>MÓDULO 1: Administración Avanzada de Sistemas Linux (Días 1-91)</strong></summary>
 
 <details>
-<summary><strong>TRIMESTRE 1: Administración Avanzada de Sistemas Linux (Días 1-91)</strong></summary>
-
-### Mes 1: Fundamentos de Sistemas (Junio 2025)
+<summary><strong>Mes 1: Fundamentos de Sistemas</strong></summary>
 
 <details>
-<summary>Semana 1 (Días 1-7): Configuración de Laboratorio y Administración Básica</summary>
+<summary>Día 1: Configuración del entorno de laboratorio</summary>
 
-**Día 1 :** Configuración del entorno de virtualización (VirtualBox/VMware)  
-**Día 2 :** Instalación de Ubuntu Server 22.04 LTS y configuración de red  
-**Día 3 (17 Jun):** Administración del filesystem y comandos básicos (ls, cd, cp, mv, rm)  
-**Día 4 (18 Jun):** Gestión de permisos (chmod, chown) y administración de usuarios  
-**Día 5 (19 Jun):** Administración de paquetes con APT (update, upgrade, install)  
-**Día 6 (20 Jun):** Gestión de servicios con systemd (systemctl) y análisis de logs (journalctl)  
-**Día 7 (21 Jun):** Laboratorio integrado: Configuración completa de servidor base
+- Instalación de VirtualBox/VMware
+- Descarga de Ubuntu Server 22.04 LTS  
+- Creación de primera máquina virtual (4GB RAM, 50GB disco)
+- Configuración inicial del entorno de desarrollo
 
 </details>
 
 <details>
-<summary>Semana 2 (Días 8-14): Configuración de Red y Almacenamiento</summary>
+<summary>Día 2: Instalación y configuración inicial</summary>
 
-**Día 8 :** Configuración de interfaces de red con Netplan y herramientas de diagnóstico  
-**Día 9 (:** Configuración DNS y troubleshooting de conectividad (ping, traceroute)  
-**Día 10 :** Hardening de SSH y gestión de claves criptográficas  
-**Día 11 :** Configuración de firewall con UFW (Uncomplicated Firewall)  
-**Día 12 :** Gestión de discos (fdisk) y sistemas de archivos (ext4)  
-**Día 13 :** LVM (Logical Volume Manager) - Creación y gestión de volúmenes  
-**Día 14 :** Laboratorio: Implementación de red segura con LVM
+- Instalación de Ubuntu Server 22.04 LTS
+- Configuración inicial de usuario, red y SSH
+- Primeros comandos básicos del sistema
+- Verificación de conectividad y acceso remoto
 
 </details>
 
 <details>
-<summary>Semana 3 (Días 15-21): Servicios Web y Bases de Datos</summary>
+<summary>Día 3: Administración básica del sistema</summary>
 
-**Día 15 (29 Jun):** Instalación y configuración de Apache2 con Virtual Hosts  
-**Día 16 (30 Jun):** Instalación de Nginx y configuración como Reverse Proxy  
-**Día 17 (1 Jul):** Instalación y securización de MySQL/MariaDB  
-**Día 18 (2 Jul):** Instalación y gestión de PostgreSQL (backup/restore)  
-**Día 19 (3 Jul):** Implementación de stack LAMP (Linux, Apache, MySQL, PHP)  
-**Día 20 (4 Jul):** Automatización de tareas con Cron y crontab  
-**Día 21 (5 Jul):** Laboratorio: Despliegue de aplicación web completa
+- Estructura del filesystem Linux (FHS)
+- Comandos básicos: ls, cd, pwd, mkdir, rmdir
+- Gestión de archivos: cp, mv, rm, find
+- Navegación y manipulación del sistema de archivos
 
 </details>
 
 <details>
-<summary>Semana 4 (Días 22-28): Monitorización y Scripting</summary>
+<summary>Día 4: Permisos y usuarios básicos</summary>
 
-**Día 22 (6 Jul):** Análisis de performance del sistema (top, htop, iotop)  
-**Día 23 (7 Jul):** Gestión de logs con rsyslog y rotación con logrotate  
-**Día 24 (8 Jul):** Estrategias de backup y scripts de respaldo con rsync  
-**Día 25 (9 Jul):** Fundamentos de scripting en Bash - Variables y condicionales  
-**Día 26 (10 Jul):** Scripting avanzado - Funciones, argumentos y manejo de errores  
-**Día 27 (11 Jul):** Automatización avanzada y scripts de administración  
-**Día 28 (12 Jul):** Evaluación práctica: Despliegue y documentación completa
-
-</details>
-
-### Mes 2: Servicios Críticos y Alta Disponibilidad (Julio 2025)
-
-<details>
-<summary>Semana 5 (Días 29-35): Contenedores y Docker</summary>
-
-**Día 29 (13 Jul):** Introducción a Docker - Conceptos y primeros contenedores  
-**Día 30 (14 Jul):** Dockerfiles - Creación y gestión de imágenes personalizadas  
-**Día 31 (15 Jul):** Docker avanzado - Gestión de volúmenes y redes  
-**Día 32 (16 Jul):** Docker Compose - Orquestación de aplicaciones multi-contenedor  
-**Día 33 (17 Jul):** Migración de stack LAMP a contenedores  
-**Día 34 (18 Jul):** Container Registry - Docker Hub y registros privados  
-**Día 35 (19 Jul):** Laboratorio: Stack completo con Docker Compose
+- Sistema de permisos Linux (rwx)
+- Comandos chmod, chown, chgrp
+- Usuarios y grupos básicos: useradd, usermod, groups
+- Gestión de cuentas y control de acceso
 
 </details>
 
 <details>
-<summary>Semana 6 (Días 36-42): Alta Disponibilidad y Balanceo</summary>
+<summary>Día 5: Administración de paquetes</summary>
 
-**Día 36 (20 Jul):** Conceptos de Alta Disponibilidad - Load balancers y health checks  
-**Día 37 (21 Jul):** HAProxy - Configuración de backends y terminación SSL  
-**Día 38 (22 Jul):** Nginx como Load Balancer - Configuración de upstreams  
-**Día 39 (23 Jul):** Replicación Master-Slave en MySQL  
-**Día 40 (24 Jul):** Clustering con Pacemaker y Corosync  
-**Día 41 (25 Jul):** Monitorización con Nagios  
-**Día 42 (26 Jul):** Laboratorio: Cluster funcional con load balancer
+- APT: apt update, apt upgrade, apt install
+- Gestión de repositorios
+- Instalación de software básico
+- Mantenimiento del sistema de paquetes
 
 </details>
 
 <details>
-<summary>Semana 7 (Días 43-49): Monitorización Avanzada</summary>
+<summary>Día 6: Servicios del sistema</summary>
 
-**Día 43 (27 Jul):** Instalación y configuración de Zabbix  
-**Día 44 (28 Jul):** Zabbix avanzado - Templates, triggers y dashboards  
-**Día 45 (29 Jul):** Colección de métricas personalizadas  
-**Día 46 (30 Jul):** Sistemas de alertas - Email y Slack  
-**Día 47 (31 Jul):** Introducción al stack ELK para gestión de logs  
-**Día 48 (1 Ago):** Performance tuning - Sistema, BBDD y servidor web  
-**Día 49 (2 Ago):** Laboratorio: Zabbix con dashboards y alertas
+- Systemd: systemctl, service management
+- Habilitación y deshabilitación de servicios
+- Logs del sistema: journalctl
+- Gestión del estado de servicios
 
 </details>
 
 <details>
-<summary>Semana 8 (Días 50-56): Orquestación con Kubernetes</summary>
+<summary>Día 7: Repaso y laboratorio</summary>
 
-**Día 50 (3 Ago):** Introducción a Kubernetes - Pods, Services y Minikube  
-**Día 51 (4 Ago):** Objetos de K8s - Deployments con manifiestos YAML  
-**Día 52 (5 Ago):** Redes en K8s - Tipos de servicios e Ingress Controllers  
-**Día 53 (6 Ago):** Almacenamiento en K8s - Persistent Volumes y Storage Classes  
-**Día 54 (7 Ago):** Despliegue de aplicaciones - ConfigMaps y Secrets  
-**Día 55 (8 Ago):** Monitorización en K8s - Prometheus y Grafana  
-**Día 56 (9 Ago):** Laboratorio: Aplicación completa en Kubernetes
-
-</details>
-
-### Mes 3: Consolidación y DevOps (Agosto 2025)
-
-<details>
-<summary>Semana 9 (Días 57-63): Proyecto Integrador</summary>
-
-**Día 57 (10 Ago):** Repaso integral y planificación de proyecto  
-**Día 58 (11 Ago):** Diseño de arquitectura completa  
-**Día 59 (12 Ago):** Implementación de infraestructura base  
-**Día 60 (13 Ago):** Despliegue de servicios web y bases de datos  
-**Día 61 (14 Ago):** Contenedorización y orquestación  
-**Día 62 (15 Ago):** Implementación de monitorización y alertas  
-**Día 63 (16 Ago):** Documentación técnica y procedimientos DR
+- Práctica integradora de la semana
+- Configuración de servidor base completo
+- Documentación de procedimientos
+- Validación de conocimientos adquiridos
 
 </details>
 
 <details>
-<summary>Semana 10 (Días 64-70): Fundamentos DevOps</summary>
+<summary>Día 8: Redes en Linux I</summary>
 
-**Día 64 (17 Ago):** Introducción a DevOps - Conceptos CI/CD  
-**Día 65 (18 Ago):** GitLab CI/CD - Creación de pipelines YAML  
-**Día 66 (19 Ago):** Infrastructure as Code - Terraform y Ansible  
-**Día 67 (20 Ago):** Ansible - Playbooks para automatización  
-**Día 68 (21 Ago):** Terraform - Gestión de recursos y estado  
-**Día 69 (22 Ago):** Despliegue automatizado e integración IaC  
-**Día 70 (23 Ago):** Laboratorio: Pipeline CI/CD completo
+- Configuración de interfaces de red
+- Netplan configuration
+- Comandos: ip, ifconfig, netstat
+- Diagnóstico básico de conectividad
 
 </details>
 
 <details>
-<summary>Semana 11 (Días 71-77): Hardening y Cumplimiento</summary>
+<summary>Día 9: Redes en Linux II</summary>
 
-**Día 71 (24 Ago):** Troubleshooting avanzado - Diagnóstico de red y performance  
-**Día 72 (25 Ago):** Disaster Recovery - Planificación RTO/RPO  
-**Día 73 (26 Ago):** Security Hardening - Benchmarks CIS  
-**Día 74 (27 Ago):** Controles de acceso y auditoría  
-**Día 75 (28 Ago):** Fundamentos de compliance y auditorías  
-**Día 76 (29 Ago):** Revisión de proyecto final  
-**Día 77 (30 Ago):** Evaluación trimestral - Demo y defensa de proyecto
+- Configuración DNS: resolv.conf
+- Routing básico
+- Troubleshooting de red: ping, traceroute, nslookup
+- Análisis de conectividad de red
+
+</details>
+
+<details>
+<summary>Día 10: SSH avanzado</summary>
+
+- Configuración segura de SSH
+- Generación e instalación de llaves SSH
+- Configuración de cliente SSH: .ssh/config
+- Hardening básico de acceso remoto
+
+</details>
+
+<details>
+<summary>Día 11: Firewall básico</summary>
+
+- UFW (Uncomplicated Firewall)
+- Reglas básicas de firewall
+- Configuración de puertos
+- Políticas de seguridad de red
+
+</details>
+
+<details>
+<summary>Día 12: Almacenamiento I</summary>
+
+- Gestión de discos: fdisk, lsblk
+- Sistemas de archivos: ext4, xfs
+- Montaje y unmount
+- Administración básica de almacenamiento
+
+</details>
+
+<details>
+<summary>Día 13: LVM (Logical Volume Manager)</summary>
+
+- Conceptos: PV, VG, LV
+- Creación y gestión de volúmenes lógicos
+- Redimensionado de volúmenes
+- Gestión avanzada de almacenamiento
+
+</details>
+
+<details>
+<summary>Día 14: Laboratorio integrado semana 2</summary>
+
+- Configuración de red completa
+- SSH hardening implementado
+- LVM configurado
+- Integración de componentes de red y almacenamiento
+
+</details>
+
+<details>
+<summary>Día 15: Servicios web I - Apache</summary>
+
+- Instalación de Apache2
+- Configuración de virtual hosts
+- Módulos básicos
+- Configuración de servidor web
+
+</details>
+
+<details>
+<summary>Día 16: Servicios web II - Nginx</summary>
+
+- Instalación y configuración de Nginx
+- Proxy reverse básico
+- Load balancing básico
+- Comparación con Apache
+
+</details>
+
+<details>
+<summary>Día 17: Bases de datos I - MySQL</summary>
+
+- Instalación de MySQL/MariaDB
+- Configuración segura
+- Usuarios y permisos de BD
+- Administración básica de bases de datos
+
+</details>
+
+<details>
+<summary>Día 18: Bases de datos II - PostgreSQL</summary>
+
+- Instalación de PostgreSQL
+- Configuración básica
+- Backup y restore
+- Gestión de bases de datos PostgreSQL
+
+</details>
+
+<details>
+<summary>Día 19: PHP y stack LAMP</summary>
+
+- Instalación de PHP 8.x
+- Configuración de stack LAMP
+- Pruebas de funcionamiento
+- Integración de componentes web
+
+</details>
+
+<details>
+<summary>Día 20: Automatización I - Cron</summary>
+
+- Configuración de crontab
+- Scripts de automatización
+- Tareas programadas
+- Automatización de mantenimiento
+
+</details>
+
+<details>
+<summary>Día 21: Laboratorio LAMP completo</summary>
+
+- Despliegue de aplicación web completa
+- Stack LAMP funcional
+- Documentación de implementación
+- Validación de funcionalidad
+
+</details>
+
+<details>
+<summary>Día 22: Monitorización I - Básica</summary>
+
+- Comandos de monitorización: top, htop, iotop
+- Análisis de performance
+- Identificación de cuellos de botella
+- Diagnóstico de rendimiento del sistema
+
+</details>
+
+<details>
+<summary>Día 23: Logs del sistema</summary>
+
+- Análisis de logs: /var/log
+- Configuración de rsyslog
+- Rotación de logs: logrotate
+- Gestión centralizada de logs
+
+</details>
+
+<details>
+<summary>Día 24: Backup y restauración</summary>
+
+- Estrategias de backup
+- Scripts de backup automático
+- Pruebas de restauración
+- Planificación de recuperación
+
+</details>
+
+<details>
+<summary>Día 25: Scripting bash I</summary>
+
+- Fundamentos de bash scripting
+- Variables y condicionales
+- Bucles básicos
+- Estructura de scripts
+
+</details>
+
+<details>
+<summary>Día 26: Scripting bash II</summary>
+
+- Funciones en bash
+- Manejo de argumentos
+- Error handling
+- Scripts avanzados
+
+</details>
+
+<details>
+<summary>Día 27: Automatización avanzada</summary>
+
+- Scripts de administración
+- Deployment automático
+- Configuración automatizada
+- Herramientas de automatización
+
+</details>
+
+<details>
+<summary>Día 28: Examen del mes 1</summary>
+
+- Evaluación práctica completa
+- Despliegue de servidor desde cero
+- Documentación final
+- Validación de competencias del primer mes
+
+</details>
+
+</details>
+
+<details>
+<summary><strong>Mes 2: Servicios Críticos y Alta Disponibilidad</strong></summary>
+
+<details>
+<summary>Día 29: Introducción a contenedores</summary>
+
+- Conceptos básicos de Docker
+- Instalación de Docker
+- Primeros contenedores
+- Fundamentos de containerización
+
+</details>
+
+<details>
+<summary>Día 30: Docker básico</summary>
+
+- Creación de Dockerfiles
+- Gestión de imágenes Docker
+- Ciclo de vida de contenedores
+- Operaciones básicas con contenedores
+
+</details>
+
+<details>
+<summary>Día 31: Docker avanzado</summary>
+
+- Gestión de volúmenes Docker
+- Redes de contenedores
+- Aplicaciones multi-contenedor
+- Configuración avanzada
+
+</details>
+
+<details>
+<summary>Día 32: Docker Compose</summary>
+
+- Estructura de docker-compose.yml
+- Orquestación de servicios
+- Variables de entorno
+- Gestión de stacks de aplicaciones
+
+</details>
+
+<details>
+<summary>Día 33: Migración a contenedores</summary>
+
+- Containerización de stack LAMP
+- Bases de datos en contenedores
+- Almacenamiento persistente
+- Migración de aplicaciones tradicionales
+
+</details>
+
+<details>
+<summary>Día 34: Container registry</summary>
+
+- Uso de Docker Hub
+- Configuración de registro privado
+- Escaneo de seguridad de imágenes
+- Gestión de repositorios de contenedores
+
+</details>
+
+<details>
+<summary>Día 35: Laboratorio Docker</summary>
+
+- Stack completo containerizado
+- Despliegue con docker-compose
+- Testing y validación
+- Documentación de la implementación
+
+</details>
+
+<details>
+<summary>Día 36: Alta disponibilidad I</summary>
+
+- Conceptos de Alta Disponibilidad
+- Load balancers
+- Health checks
+- Arquitecturas resilientes
+
+</details>
+
+<details>
+<summary>Día 37: HAProxy configuración</summary>
+
+- Instalación de HAProxy
+- Configuración de backends
+- Terminación SSL
+- Balanceo de carga avanzado
+
+</details>
+
+<details>
+<summary>Día 38: Nginx como load balancer</summary>
+
+- Configuración de upstreams
+- Algoritmos de load balancing
+- Configuración de failover
+- Optimización de rendimiento
+
+</details>
+
+<details>
+<summary>Día 39: Base de datos HA</summary>
+
+- Replicación MySQL
+- Configuración Master-Slave
+- Testing de failover
+- Alta disponibilidad de datos
+
+</details>
+
+<details>
+<summary>Día 40: Clustering básico</summary>
+
+- Introducción a Pacemaker/Corosync
+- Gestión de recursos de cluster
+- Prevención de split-brain
+- Configuración de cluster básico
+
+</details>
+
+<details>
+<summary>Día 41: Monitorización II - Nagios</summary>
+
+- Instalación de Nagios
+- Monitorización de hosts y servicios
+- Configuración de notificaciones
+- Dashboards de monitorización
+
+</details>
+
+<details>
+<summary>Día 42: Laboratorio HA</summary>
+
+- Cluster de 3 nodos funcional
+- Load balancer configurado
+- Monitorización activa
+- Validación de alta disponibilidad
+
+</details>
+
+<details>
+<summary>Día 43: Instalación de Zabbix</summary>
+
+- Configuración del servidor Zabbix
+- Configuración de agentes
+- Configuración de interfaz web
+- Arquitectura de monitorización
+
+</details>
+
+<details>
+<summary>Día 44: Zabbix configuración</summary>
+
+- Creación de templates
+- Configuración de triggers y acciones
+- Personalización de dashboards
+- Configuración avanzada de monitorización
+
+</details>
+
+<details>
+<summary>Día 45: Métricas avanzadas</summary>
+
+- Colección de métricas personalizadas
+- Monitorización de performance
+- Planificación de capacidad
+- Análisis de tendencias
+
+</details>
+
+<details>
+<summary>Día 46: Sistemas de alertas</summary>
+
+- Notificaciones por email
+- Integración con Slack
+- Procedimientos de escalado
+- Gestión de alertas
+
+</details>
+
+<details>
+<summary>Día 47: Log management</summary>
+
+- Logging centralizado
+- Introducción al stack ELK
+- Análisis básico de logs
+- Correlación de eventos
+
+</details>
+
+<details>
+<summary>Día 48: Performance tuning</summary>
+
+- Optimización del sistema
+- Tuning de bases de datos
+- Optimización de servidor web
+- Mejora del rendimiento general
+
+</details>
+
+<details>
+<summary>Día 49: Laboratorio monitoring</summary>
+
+- Zabbix completamente configurado
+- Dashboards personalizados
+- Testing de alertas
+- Validación del sistema de monitorización
+
+</details>
+
+<details>
+<summary>Día 50: Introducción a Kubernetes</summary>
+
+- Conceptos de K8s: Pods, Services
+- Instalación de Minikube
+- Primeros pods
+- Arquitectura de Kubernetes
+
+</details>
+
+<details>
+<summary>Día 51: Objetos básicos de Kubernetes</summary>
+
+- Pods, Services, Deployments
+- Manifiestos YAML
+- Comandos kubectl
+- Gestión de objetos K8s
+
+</details>
+
+<details>
+<summary>Día 52: Redes en K8s</summary>
+
+- Tipos de servicios
+- Ingress controllers
+- Políticas de red básicas
+- Conectividad en Kubernetes
+
+</details>
+
+<details>
+<summary>Día 53: Almacenamiento en K8s</summary>
+
+- Persistent Volumes
+- Storage Classes
+- StatefulSets básicos
+- Gestión de almacenamiento persistente
+
+</details>
+
+<details>
+<summary>Día 54: Despliegue de aplicaciones</summary>
+
+- Despliegue de LAMP en K8s
+- ConfigMaps y Secrets
+- Gestión de entorno
+- Configuración de aplicaciones
+
+</details>
+
+<details>
+<summary>Día 55: Monitorización en K8s</summary>
+
+- Introducción a Prometheus
+- Dashboards de Grafana
+- Monitorización de cluster
+- Métricas de Kubernetes
+
+</details>
+
+<details>
+<summary>Día 56: Laboratorio K8s</summary>
+
+- Stack de aplicación completo
+- Monitorización configurada
+- Testing y validación
+- Documentación de despliegue
+
+</details>
+
+</details>
+
+<details>
+<summary><strong>Mes 3: Consolidación y DevOps</strong></summary>
+
+<details>
+<summary>Día 57: Repaso integral meses 1-2</summary>
+
+- Revisión de conceptos clave
+- Identificación de gaps de conocimiento
+- Planificación de consolidación
+- Preparación para proyecto integrador
+
+</details>
+
+<details>
+<summary>Día 58: Proyecto integrador I</summary>
+
+- Diseño de arquitectura completa
+- Especificaciones técnicas
+- Planificación de implementación
+- Documentación de requisitos
+
+</details>
+
+<details>
+<summary>Día 59: Proyecto integrador II</summary>
+
+- Setup de infraestructura base
+- Configuración de red
+- Hardening básico de seguridad
+- Implementación de base
+
+</details>
+
+<details>
+<summary>Día 60: Proyecto integrador III</summary>
+
+- Despliegue de servicios
+- Configuración de base de datos
+- Configuración de stack web
+- Integración de componentes
+
+</details>
+
+<details>
+<summary>Día 61: Proyecto integrador IV</summary>
+
+- Containerización completa
+- Configuración de orquestación
+- Testing de integración
+- Validación de funcionalidad
+
+</details>
+
+<details>
+<summary>Día 62: Proyecto integrador V</summary>
+
+- Implementación de monitorización
+- Configuración de alertas
+- Optimización de performance
+- Ajuste fino del sistema
+
+</details>
+
+<details>
+<summary>Día 63: Documentación proyecto</summary>
+
+- Documentación técnica
+- Creación de runbooks
+- Procedimientos de disaster recovery
+- Documentación operacional
+
+</details>
+
+<details>
+<summary>Día 64: Introducción DevOps</summary>
+
+- Conceptos de CI/CD
+- Fundamentos de GitLab/GitHub
+- Mejores prácticas de control de versiones
+- Cultura DevOps
+
+</details>
+
+<details>
+<summary>Día 65: GitLab CI/CD</summary>
+
+- Creación de pipelines
+- Configuración YAML
+- Testing automatizado
+- Integración continua
+
+</details>
+
+<details>
+<summary>Día 66: Infrastructure as Code intro</summary>
+
+- Fundamentos de Terraform
+- Introducción a Ansible
+- Gestión de configuración
+- Principios de IaC
+
+</details>
+
+<details>
+<summary>Día 67: Ansible playbooks</summary>
+
+- Gestión de inventario
+- Estructura de playbooks
+- Automatización de tareas
+- Gestión de configuración
+
+</details>
+
+<details>
+<summary>Día 68: Terraform básico</summary>
+
+- Configuración de providers
+- Gestión de recursos
+- Gestión de estado
+- Infraestructura como código
+
+</details>
+
+<details>
+<summary>Día 69: Automated deployment</summary>
+
+- Pipeline con deployment
+- Provisioning de infraestructura
+- Despliegue de aplicaciones
+- Automatización end-to-end
+
+</details>
+
+<details>
+<summary>Día 70: Laboratorio DevOps</summary>
+
+- Pipeline CI/CD completo
+- Infraestructura automatizada
+- Testing de deployment
+- Validación de automatización
+
+</details>
+
+<details>
+<summary>Día 71: Troubleshooting avanzado</summary>
+
+- Técnicas de diagnóstico
+- Problemas de performance
+- Problemas de red
+- Metodologías de resolución
+
+</details>
+
+<details>
+<summary>Día 72: Disaster recovery</summary>
+
+- Estrategias de backup
+- Procedimientos de recovery
+- Planificación de RTO/RPO
+- Continuidad del negocio
+
+</details>
+
+<details>
+<summary>Día 73: Security hardening I</summary>
+
+- Introducción a benchmarks CIS
+- Hardening del sistema
+- Hardening de servicios
+- Controles de seguridad
+
+</details>
+
+<details>
+<summary>Día 74: Security hardening II</summary>
+
+- Seguridad de red
+- Controles de acceso
+- Logging de auditoría
+- Implementación de controles
+
+</details>
+
+<details>
+<summary>Día 75: Compliance básico</summary>
+
+- Requisitos regulatorios
+- Preparación para auditorías
+- Requisitos de documentación
+- Frameworks de compliance
+
+</details>
+
+<details>
+<summary>Día 76: Preparación proyecto final</summary>
+
+- Revisión de arquitectura
+- Assessment de seguridad
+- Validación de performance
+- Preparación para evaluación
+
+</details>
+
+<details>
+<summary>Día 77: Evaluación Trimestre 1</summary>
+
+- Demo completa de infraestructura
+- Revisión de documentación
+- Assessment de habilidades
+- Validación de competencias del primer trimestre
+
+</details>
 
 </details>
 
