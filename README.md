@@ -46,6 +46,11 @@ Para evaluar la metodología y calidad técnica del programa, ofrecemos acceso c
         a su transformación profesional. Si estás dispuesto a hacer esa inversión en ti mismo, el retorno será exponencial.
     </text>
 </svg>
+<div align="center">
+  <img src="https://img.shields.io/badge/⚠️_AVISO_IMPORTANTE-red?style=for-the-badge" alt="Aviso Importante">
+</div>
+
+$${\color{red}\textbf{El\ programa\ Hacklab365\ no\ es\ para\ todos.\ Está\ diseñado\ para\ individuos\ con\ la\ disciplina\ para\ dedicar\ 2\ horas\ diarias\ durante\ 365\ días\ consecutivos\ a\ su\ transformación\ profesional.\ Si\ estás\ dispuesto\ a\ hacer\ esa\ inversión\ en\ ti\ mismo,\ el\ retorno\ será\ exponencial.}}$$
 
 
 
