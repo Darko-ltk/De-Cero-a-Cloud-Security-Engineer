@@ -74,8 +74,8 @@ El programa está estructurado en 4 trimestres de especialización técnica prog
 <details>
 <summary>Semana 1 (Días 1-7): Configuración de Laboratorio y Administración Básica</summary>
 
-**Día 1 (15 Jun):** Configuración del entorno de virtualización (VirtualBox/VMware)  
-**Día 2 (16 Jun):** Instalación de Ubuntu Server 22.04 LTS y configuración de red  
+**Día 1 :** Configuración del entorno de virtualización (VirtualBox/VMware)  
+**Día 2 :** Instalación de Ubuntu Server 22.04 LTS y configuración de red  
 **Día 3 (17 Jun):** Administración del filesystem y comandos básicos (ls, cd, cp, mv, rm)  
 **Día 4 (18 Jun):** Gestión de permisos (chmod, chown) y administración de usuarios  
 **Día 5 (19 Jun):** Administración de paquetes con APT (update, upgrade, install)  
@@ -87,13 +87,13 @@ El programa está estructurado en 4 trimestres de especialización técnica prog
 <details>
 <summary>Semana 2 (Días 8-14): Configuración de Red y Almacenamiento</summary>
 
-**Día 8 (22 Jun):** Configuración de interfaces de red con Netplan y herramientas de diagnóstico  
-**Día 9 (23 Jun):** Configuración DNS y troubleshooting de conectividad (ping, traceroute)  
-**Día 10 (24 Jun):** Hardening de SSH y gestión de claves criptográficas  
-**Día 11 (25 Jun):** Configuración de firewall con UFW (Uncomplicated Firewall)  
-**Día 12 (26 Jun):** Gestión de discos (fdisk) y sistemas de archivos (ext4)  
-**Día 13 (27 Jun):** LVM (Logical Volume Manager) - Creación y gestión de volúmenes  
-**Día 14 (28 Jun):** Laboratorio: Implementación de red segura con LVM
+**Día 8 :** Configuración de interfaces de red con Netplan y herramientas de diagnóstico  
+**Día 9 (:** Configuración DNS y troubleshooting de conectividad (ping, traceroute)  
+**Día 10 :** Hardening de SSH y gestión de claves criptográficas  
+**Día 11 :** Configuración de firewall con UFW (Uncomplicated Firewall)  
+**Día 12 :** Gestión de discos (fdisk) y sistemas de archivos (ext4)  
+**Día 13 :** LVM (Logical Volume Manager) - Creación y gestión de volúmenes  
+**Día 14 :** Laboratorio: Implementación de red segura con LVM
 
 </details>
 
