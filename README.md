@@ -6,12 +6,11 @@
 -->
 
 <div align="center">
-  <!-- <img src="./assets/hacklab365-logo.png" alt="Hacklab365" width="180"/> -->
-  <h1>Hacklab365: Programa de Especialización en Cloud Security Engineering</h1>
-  <p>
-    <strong> Programa intensivo de 12 meses para la formación de Cloud Security Engineers </strong>
-      
-  </p>
+  <a href="https://github.com/Darko-ltk/hacklab365/tree/main/modulos/modulo-1-linux-admin">
+    <img src="https://img.shields.io/badge/🐧_Acceder_al_Contenido_Gratuito-Linux_Admin-2E8B57?style=for-the-badge&logo=linux&logoColor=white" alt="Acceder al Contenido Gratuito">
+  </a>
+</div>
+
 
 ---
 
