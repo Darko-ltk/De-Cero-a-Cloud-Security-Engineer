@@ -20,10 +20,11 @@
 Para evaluar la metodología y calidad técnica del programa, ofrecemos acceso completo al contenido de la **Semana 1: Fundamentos de Sistemas Linux**. Este módulo incluye configuración de laboratorio, instalación de Ubuntu Server y administración básica del sistema.
 
 <div align="center">
-  <a href="#semana-1-contenido-de-evaluación">
-    <img src="https://github.com/Darko-ltk/De-Cero-a-Cloud-Security-Engineer/tree/f367d675a0b01eff04900a82ba2a200be318071b/modulo-1-linux-admin" alt="Contenido de Evaluación">
+  <a href="https://github.com/Darko-ltk/hacklab365/tree/main/modulos/modulo-1-linux-admin">
+    <img src="https://img.shields.io/badge/START_HERE-🐧_Linux_Fundamentals-darkgreen?style=for-the-badge&logo=linux&logoColor=white" alt="Empezar Aquí">
   </a>
 </div>
+
 
 ---
 
