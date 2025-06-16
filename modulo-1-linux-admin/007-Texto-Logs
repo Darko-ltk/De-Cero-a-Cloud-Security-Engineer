@@ -1,0 +1,227 @@
+DÍA 7: MANIPULACIÓN DE TEXTO Y ANÁLISIS DE LOGS
+
+Objetivo: Dominar las herramientas de manipulación de texto para el análisis forense de logs y la detección de incidentes
+
+FUNDAMENTOS DEL ANÁLISIS DE LOGS
+La Importancia Crítica de los Logs en Ciberseguridad
+Como futuro Cloud Security Engineer, los logs son tus "ojos" en el sistema. No son simples archivos de texto; son la fuente de verdad forense que te permite:
+    • Reconstruir Incidentes: Entender la secuencia de acciones de un atacante.
+    • Detectar Amenazas en Tiempo Real: Identificar actividad maliciosa mientras ocurre.
+    • Auditoría y Compliance: Demostrar el cumplimiento de normativas de seguridad.
+    • Troubleshooting de Seguridad: Diagnosticar por qué una configuración de seguridad no funciona como se espera.
+    • Análisis de Causa Raíz (RCA): Determinar el origen exacto de una brecha de seguridad.
+Ubicaciones Clave de Logs en Ubuntu Server
+
+Debes conocer estas ubicaciones como la palma de tu mano[1]:
+    • /var/log/auth.log: CRÍTICO. Registra todos los intentos de autenticación, exitosos y fallidos, y el uso de sudo. Tu primera parada para investigar accesos no autorizados[1].
+    • /var/log/syslog: Registro general del sistema. Contiene mensajes de una gran variedad de servicios y del kernel[1].
+    • /var/log/kern.log: Mensajes específicos del kernel. Útil para diagnosticar problemas de hardware o drivers[1].
+    • /var/log/unattended-upgrades/: Logs de las actualizaciones automáticas de seguridad.
+    • /var/log/apt/history.log: Historial de instalación y eliminación de paquetes con apt.
+    • /var/log/ufw.log: Actividad del firewall UFW (si está habilitado).
+    • /var/log/fail2ban.log: Logs de los baneos de IPs (si Fail2Ban está instalado).
+
+HERRAMIENTAS ESENCIALES DE MANIPULACIÓN DE TEXTO
+Redirección y Tuberías (Pipes): El Flujo de Datos
+Dominar el flujo de datos es esencial para cualquier análisis complejo[2].
+    • Tubería (|): Encadena comandos. La salida del comando1 se convierte en la entrada del comando2[2].
+comando1 | comando2
+    • Redirección de Salida (>): Envía la salida a un archivo nuevo, sobrescribiéndolo si ya existe[2].
+comando > archivo_nuevo.txt
+    • Añadir a un Archivo (>>): Envía la salida a un archivo existente, añadiéndola al final[2].
+comando >> archivo_existente.txt
+Comando grep: El Bisturí para Buscar Patrones
+grep es tu herramienta principal para filtrar y encontrar información específica en grandes volúmenes de datos[3].
+Sintaxis Básica:
+# Buscar una cadena de texto en un archivo
+grep "Failed password" /var/log/auth.log
+
+# Buscar recursivamente en un directorio y sus subdirectorios
+sudo grep -r "error" /var/log/
+
+Búsqueda Avanzada con Expresiones Regulares:
+# Buscar líneas que comienzan con "sshd"
+grep "^sshd" /var/log/auth.log
+
+# Buscar líneas que contienen direcciones IP (patrón simple)
+grep -E "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" /var/log/auth.log
+
+# Mostrar líneas que contienen "accepted" O "failed"
+grep -E "accepted|failed" /var/log/auth.log
+
+# Invertir la búsqueda (mostrar todo excepto el patrón)
+grep -v "CRON" /var/log/syslog
+
+# Mostrar N líneas antes (-B) y después (-A) del patrón
+grep -A 2 -B 1 "session opened" /var/log/auth.log
+
+Comando sed: El Editor de Flujos para Modificar Texto
+sed (Stream Editor) te permite realizar transformaciones de texto sobre la marcha[3].
+Sustitución de Texto:
+# Reemplazar la primera ocurrencia de "string1" por "string2" en cada línea
+sed 's/string1/string2/' archivo.txt
+
+# Reemplazar TODAS las ocurrencias (modificador 'g' de global)
+sed 's/string1/string2/g' archivo.txt
+
+# Ejemplo práctico: Anonimizar IPs en un log para un informe
+cat /var/log/auth.log | sed 's/[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}/IP_ANONIMIZADA/g'
+
+Eliminación de Líneas:
+# Eliminar líneas en blanco
+sed '/^$/d' archivo.txt
+
+# Eliminar líneas que contienen "DEBUG"
+sed '/DEBUG/d' /var/log/syslog
+
+# Eliminar la primera línea de un archivo
+sed '1d' archivo.txt
+
+Comando awk: El Procesador de Texto por Columnas
+awk es una herramienta de programación extremadamente potente para procesar datos estructurados en columnas[3].
+Sintaxis Básica:
+# Imprimir la primera columna ($1) y la tercera ($3) de un archivo
+awk '{print $1, $3}' archivo.txt
+
+Ejemplos de Seguridad:
+# Extraer las IPs de intentos de login fallidos
+sudo grep "Failed password" /var/log/auth.log | awk '{print $11}'
+
+# Contar el número de intentos fallidos por usuario
+sudo grep "Failed password" /var/log/auth.log | awk '{print $9}' | sort | uniq -c | sort -nr
+
+# Mostrar los procesos que consumen más de 10% de CPU
+ps aux | awk '$3 > 10.0 {print $0}'
+
+Comandos sort, uniq, wc y cut: Las Utilidades Esenciales
+    • sort: Ordena las líneas de texto.
+        ◦ -n: Orden numérico.
+        ◦ -r: Orden inverso.
+    • uniq: Filtra o cuenta líneas duplicadas adyacentes.
+        ◦ -c: Cuenta las ocurrencias de cada línea.
+    • wc: Cuenta líneas (-l), palabras (-w) y caracteres (-c).
+    • cut: Extrae secciones (columnas) de cada línea.
+        ◦ -d: Especifica el delimitador.
+        ◦ -f: Especifica los campos (columnas) a extraer.
+
+ANÁLISIS DE LOGS EN LA PRÁCTICA
+Metodología de Análisis de Incidentes
+Basado en las mejores prácticas de la industria, un análisis de logs sigue estos pasos[4]:
+    1. Identificar Fuentes de Logs: Saber qué logs son relevantes para el incidente.
+    2. Centralizar y Copiar: Copiar los logs a un lugar seguro para no alterar la evidencia.
+    3. Minimizar Ruido: Filtrar eventos benignos y repetitivos.
+    4. Validar Timestamps: Asegurarse de que las fechas y horas son correctas.
+    5. Buscar Anomalías: Errores, fallos, cambios de estado, eventos de acceso inusuales.
+    6. Reconstruir la Línea de Tiempo: Ir hacia atrás y adelante en el tiempo para entender la secuencia de eventos.
+    7. Correlacionar Logs: Unir información de diferentes fuentes (auth.log, syslog, logs de aplicación) para obtener una visión completa[4].
+
+Comando journalctl: El Visor Moderno de Logs
+Para sistemas con systemd, journalctl es la herramienta principal para consultar el journal[5].
+# Ver todos los logs del sistema
+journalctl
+
+# Ver los logs en tiempo real (similar a tail -f)
+journalctl -f
+
+# Filtrar por un servicio específico
+journalctl -u ssh.service
+
+# Filtrar por prioridad (error, warning, etc.)
+journalctl -p err
+
+# Mostrar logs desde una fecha específica
+journalctl --since "2025-06-21 10:00:00"
+
+# Mostrar los últimos 100 logs
+journalctl -n 100
+
+RECURSOS GRATUITOS PARA HOY
+Recurso Principal: ExplainShell
+URL: https://explainshell.com/
+Utilidad:
+    • Pega un comando complejo y te lo desglosa pieza por pieza.
+    • Indispensable para entender y construir "one-liners" de análisis de logs.
+Recurso Complementario: Regex101
+URL: https://regex101.com/
+Utilidad:
+    • Constructor y depurador interactivo de expresiones regulares (RegEx).
+    • Esencial para crear patrones de búsqueda precisos con grep, sed y awk.
+Recurso de Práctica: Grep.app
+URL: https://grep.app/
+Utilidad:
+    • Busca en más de medio millón de repositorios de GitHub.
+    • Excelente para ver cómo otros desarrolladores y administradores usan grep en casos reales.
+Documentación Oficial
+Acceso: En tu propio terminal.
+man grep
+man sed
+man awk
+man journalctl
+
+Utilidad: La fuente de verdad más completa y precisa para cada herramienta.
+
+EJERCICIOS PRÁCTICOS DEL DÍA
+Laboratorio 1: Análisis de Autenticación
+# 1. Listar todos los intentos de login exitosos para el usuario 'admin'
+sudo grep "Accepted password for admin" /var/log/auth.log
+
+# 2. Extraer las direcciones IP de todos los intentos fallidos
+sudo grep "Failed password" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq
+
+# 3. Contar el número de intentos fallidos por IP
+sudo grep "Failed password" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr
+
+# 4. Listar todas las sesiones de sudo iniciadas
+sudo grep "session opened for user root by" /var/log/auth.log
+
+# 5. Detectar logins fuera del horario laboral (ej: de 00:00 a 06:00)
+sudo journalctl -u ssh --since "today" | grep "Accepted" | grep -E " (00|01|02|03|04|05|06):"
+
+Laboratorio 2: Investigación de Paquetes
+# 1. Ver el historial reciente de instalación de paquetes
+grep "install " /var/log/apt/history.log
+
+# 2. Identificar qué usuario instaló un paquete específico (combinando con auth.log)
+# (Este es un ejercicio avanzado de correlación)
+
+# 3. Extraer solo los nombres de los paquetes instalados hoy
+grep "install " /var/log/apt/history.log | grep "$(date +%Y-%m-%d)" | awk -F' ' '{print $4}'
+
+# 4. Crear un informe de todos los paquetes eliminados del sistema
+grep "purge" /var/log/apt/history.log
+
+Laboratorio 3: Monitoreo Activo
+# 1. Monitorear en tiempo real los logs de autenticación, buscando errores
+sudo tail -f /var/log/auth.log | grep -i "error"
+
+# 2. Crear un "one-liner" que muestre en tiempo real cualquier conexión SSH nueva
+sudo journalctl -fu sshd | grep "Accepted"
+
+# 3. Crear un script que envíe una alerta si se detecta un intento de login root fallido
+cat > ~/root_login_alert.sh << 'EOF'
+#!/bin/bash
+tail -fn0 /var/log/auth.log | \
+while read line ; do
+    echo "$line" | grep "Failed password for root"
+    if [ $? = 0 ]
+    then
+        echo "ALERTA: Intento de login root fallido detectado!"
+    fi
+done
+EOF
+
+# 4. Ejecutar el script de monitoreo (se quedará corriendo)
+chmod +x ~/root_login_alert.sh
+./root_login_alert.sh
+
+
+
+📊 Progreso general: 7/365 días (1.92%)
+Mañana consolidaremos todo lo aprendido esta semana en un laboratorio práctico que simulará la configuración de un servidor base completo. ¡Prepárate para demostrar tus nuevas habilidades!
+⁂
+
+    1. https://keepcoding.io/blog/que-es-el-analisis-de-logs/    
+    2. https://www.iespai.com/2023/09/18/manipulacion-de-texto-en-el-terminal-sintaxis-general-y-ejemplos/    
+    3. https://laboratoriolinux.es/index.php/-noticias-mundo-linux-/software/36000-comandos-sed-awk-y-grep-sus-usos-y-ejemplos.html   
+    4. https://www.servicepilot.com/es/blog/revision-logs-criticos-analisis-incidentes-seguridad/  
+    5. https://www.cosasdelinux.com/general/administracion/logs/ 
