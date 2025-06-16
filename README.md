@@ -14,15 +14,6 @@
   </p>
 </div>
 
-<div align="center">
-  <img src="https://img.shields.io/badge/Status-Production_Ready-success" alt="Status">
-  <img src="https://img.shields.io/badge/Version-2025.1.0-blue" alt="Version">
-  <img src="https://img.shields.io/badge/License-Proprietary-red" alt="License">
-  <a href="https://www.linkedin.com/in/tu-perfil/">
-    <img src="https://img.shields.io/badge/Contact-LinkedIn-0077B5" alt="LinkedIn">
-  </a>
-</div>
-
 
 ---
 
