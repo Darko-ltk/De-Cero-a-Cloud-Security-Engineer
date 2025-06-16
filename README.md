@@ -272,3 +272,285 @@ El programa está estructurado en 4 módulos de especialización técnica progre
 </details>
 
 </details>
+
+<details>
+<summary><strong>Módulo 3: Especialización Ofensiva y Certificaciones</strong></summary>
+
+<details>
+<summary><strong>Mes 7: Preparación LPIC-1</strong></summary>
+
+**Día 162:** Determinar y configurar hardware  
+**Día 163:** Gestores de arranque GRUB y UEFI  
+**Día 164:** Shared libraries y gestión de librerías  
+**Día 165:** Particionado de discos fdisk y gdisk  
+**Día 166:** Puntos de montaje y configuración fstab  
+**Día 167:** Mantenimiento de filesystems fsck  
+**Día 168:** Repaso y laboratorio del módulo  
+**Día 169:** Gestores de paquetes Debian dpkg y apt  
+**Día 170:** Gestores de paquetes RPM yum y dnf  
+**Día 171:** Comandos GNU y Unix pipes redirección  
+**Día 172:** Creación monitorización y terminación de procesos  
+**Día 173:** Modificación de prioridades de ejecución  
+**Día 174:** Búsqueda de texto con expresiones regulares  
+**Día 175:** Edición de archivos con vi y vim  
+**Día 176:** Repaso completo objetivos examen 101  
+**Día 177:** Simulacro de examen 101 parte 1  
+**Día 178:** Simulacro de examen 101 parte 2  
+**Día 179:** Repaso de áreas débiles identificadas  
+**Día 180:** EXAMEN OFICIAL LPIC-1 101  
+**Día 181:** Introducción a shells y scripting  
+**Día 182:** Personalización del entorno de shell  
+**Día 183:** Repaso objetivos examen 102  
+**Día 184:** Simulacro de examen 102 parte 1  
+**Día 185:** Simulacro de examen 102 parte 2  
+**Día 186:** Repaso de áreas débiles  
+**Día 187:** EXAMEN OFICIAL LPIC-1 102  
+**Día 188:** Actividades post-certificación  
+**Día 189:** Descanso y preparación siguiente fase
+
+</details>
+
+<details>
+<summary><strong>Mes 8: Ethical Hacking Autodidacta</strong></summary>
+
+**Día 190:** Introducción TryHackMe y configuración VPN  
+**Día 191:** Completar ruta Pre-Security Learning Path  
+**Día 192:** Continuación Pre-Security Learning Path  
+**Día 193:** Inicio Complete Beginner Learning Path  
+**Día 194:** Laboratorios prácticos ruta principiante  
+**Día 195:** Continuación laboratorios principiante  
+**Día 196:** Documentación de hallazgos y metodologías  
+**Día 197:** Nmap básico tipos de escaneo  
+**Día 198:** Nmap avanzado NSE y evasión  
+**Día 199:** Introducción Metasploit Framework  
+**Día 200:** Módulos Metasploit auxiliary exploits payloads  
+**Día 201:** Explotación de vulnerabilidades conocidas  
+**Día 202:** Post-explotación con Meterpreter  
+**Día 203:** Laboratorio escaneo y explotación  
+**Día 204:** Introducción HackTheBox plataforma  
+**Día 205:** Resolución guiada máquina fácil  
+**Día 206:** Introducción VulnHub configuración VMs  
+**Día 207:** Explotación VM VulnHub Kioptrix  
+**Día 208:** Técnicas escalada privilegios Linux  
+**Día 209:** Técnicas escalada privilegios Windows  
+**Día 210:** Creación reportes pentesting básicos  
+**Día 211:** Introducción OWASP Top 10  
+**Día 212:** Configuración y uso Burp Suite  
+**Día 213:** Explotación XSS Cross-Site Scripting  
+**Día 214:** Explotación SQL Injection  
+**Día 215:** Explotación Command Injection LFI RFI  
+**Día 216:** Práctica PortSwigger Web Security Academy  
+**Día 217:** Laboratorio pentest aplicación web completo
+
+</details>
+
+<details>
+<summary><strong>Mes 9: Preparación CEH</strong></summary>
+
+**Día 218:** Introducción al Ethical Hacking  
+**Día 219:** Footprinting y Reconocimiento  
+**Día 220:** Escaneo de Redes  
+**Día 221:** Enumeración  
+**Día 222:** Análisis de Vulnerabilidades  
+**Día 223:** Práctica laboratorio módulos 1-5  
+**Día 224:** Examen práctica módulos 1-5  
+**Día 225:** Hacking de Sistemas  
+**Día 226:** Amenazas de Malware  
+**Día 227:** Sniffing  
+**Día 228:** Ingeniería Social  
+**Día 229:** Denegación de Servicio DoS  
+**Día 230:** Práctica laboratorio módulos 6-10  
+**Día 231:** Examen práctica módulos 6-10  
+**Día 232:** Secuestro de Sesión  
+**Día 233:** Evasión IDS Firewalls Honeypots  
+**Día 234:** Hacking de Servidores Web  
+**Día 235:** Hacking de Aplicaciones Web  
+**Día 236:** Inyección SQL  
+**Día 237:** Práctica laboratorio módulos 11-15  
+**Día 238:** Examen práctica módulos 11-15  
+**Día 239:** Hacking de Redes Inalámbricas  
+**Día 240:** Hacking de Plataformas Móviles  
+**Día 241:** Hacking de IoT y OT  
+**Día 242:** Cloud Computing y Criptografía  
+**Día 243:** Repaso general y simulacro completo  
+**Día 244:** EXAMEN OFICIAL CEH  
+**Día 245:** Celebración y preparación último trimestre
+
+</details>
+
+</details>
+
+<details>
+<summary><strong>Módulo 4: DevSecOps y Cloud Security Engineering</strong></summary>
+
+<details>
+<summary><strong>Mes 10: Integración de Seguridad en DevOps</strong></summary>
+
+**Día 246:** Introducción DevSecOps cultura y principios  
+**Día 247:** Aseguramiento pipelines CI/CD gestión secretos  
+**Día 248:** Configuración pipeline seguro GitLab CI  
+**Día 249:** Análisis composición software SCA OWASP  
+**Día 250:** Generación SBOM Software Bill Materials  
+**Día 251:** Integración SCA en pipeline  
+**Día 252:** Laboratorio pipeline CI/CD con SCA  
+**Día 253:** Seguridad Terraform gestión estado variables  
+**Día 254:** Escaneo IaC con Checkov  
+**Día 255:** Integración Checkov en pipeline CI/CD  
+**Día 256:** Seguridad Ansible Vault roles seguros  
+**Día 257:** Playbooks Ansible hardening automatizado  
+**Día 258:** Aplicación CIS Benchmarks con Ansible  
+**Día 259:** Laboratorio pipeline infraestructura segura  
+**Día 260:** Escaneo imágenes Docker con Trivy  
+**Día 261:** Integración Trivy pipeline bloqueo imágenes  
+**Día 262:** Hardening Dockerfiles mejores prácticas  
+**Día 263:** Seguridad Kubernetes RBAC Pod Security  
+**Día 264:** Seguridad Kubernetes Network Policies secretos  
+**Día 265:** Despliegue herramientas seguridad K8s Falco  
+**Día 266:** Laboratorio pipeline app segura K8s  
+**Día 267:** Análisis estático código SAST SonarQube  
+**Día 268:** Integración SAST en pipeline  
+**Día 269:** Análisis dinámico código DAST OWASP ZAP  
+**Día 270:** Integración DAST en pipeline  
+**Día 271:** Correlación resultados gestión vulnerabilidades  
+**Día 272:** Configuración Security Gates pipeline  
+**Día 273:** Laboratorio final DevSecOps completo
+
+</details>
+
+<details>
+<summary><strong>Mes 11: Ingeniería de Seguridad en AWS</strong></summary>
+
+**Día 274:** Conceptos cloud responsabilidad compartida  
+**Día 275:** Servicios core AWS EC2 S3 VPC RDS  
+**Día 276:** Seguridad cumplimiento AWS IAM Organizations  
+**Día 277:** Precios y facturación AWS  
+**Día 278:** Repaso general simulacros examen  
+**Día 279:** EXAMEN OFICIAL AWS Cloud Practitioner  
+**Día 280:** Introducción seguridad avanzada AWS  
+**Día 281:** AWS IAM roles políticas MFA prácticas  
+**Día 282:** Seguridad VPC Security Groups NACLs Endpoints  
+**Día 283:** Seguridad S3 políticas bucket cifrado versiones  
+**Día 284:** Seguridad EC2 AMIs roles instancia metadatos  
+**Día 285:** Seguridad RDS cifrado grupos autenticación  
+**Día 286:** Gestión claves AWS KMS  
+**Día 287:** Laboratorio arquitectura VPC segura  
+**Día 288:** Detección amenazas AWS GuardDuty  
+**Día 289:** Escaneo vulnerabilidades Amazon Inspector  
+**Día 290:** Protección aplicaciones AWS WAF Shield  
+**Día 291:** Centralización hallazgos AWS Security Hub  
+**Día 292:** Análisis configuraciones AWS Config  
+**Día 293:** Respuesta automatizada incidentes Lambda  
+**Día 294:** Laboratorio ecosistema seguridad AWS completo  
+**Día 295:** Diseño arquitecturas resilientes Multi-AZ DR  
+**Día 296:** Diseño arquitecturas alto rendimiento caching  
+**Día 297:** Diseño arquitecturas seguras principios seguridad  
+**Día 298:** Diseño arquitecturas optimizadas coste Spot S3  
+**Día 299:** Repaso general simulacros examen  
+**Día 300:** EXAMEN OFICIAL AWS Solutions Architect Associate  
+**Día 301:** Celebración preparación proyecto final
+
+</details>
+
+<details>
+<summary><strong>Mes 12: Proyectos Finales y Preparación Profesional</strong></summary>
+
+**Día 302:** Optimización perfil GitHub reclutadores  
+**Día 303:** Creación README perfil profesional  
+**Día 304:** Documentación técnica proyectos anteriores  
+**Día 305:** Proyecto 1 planificación hardening servidor  
+**Día 306:** Proyecto 1 ejecución CIS Benchmarks Ansible  
+**Día 307:** Proyecto 1 documentación README proyecto  
+**Día 308:** Publicación Proyecto 1 portfolio  
+**Día 309:** Proyecto 2 planificación arquitectura web AWS  
+**Día 310:** Proyecto 2 ejecución despliegue Terraform  
+**Día 311:** Proyecto 2 configuración Security Groups WAF  
+**Día 312:** Proyecto 2 validación pruebas seguridad  
+**Día 313:** Proyecto 2 documentación diagramas arquitectura  
+**Día 314:** Proyecto 2 documentación README proyecto  
+**Día 315:** Publicación Proyecto 2 portfolio  
+**Día 316:** Proyecto 3 planificación pipeline CI/CD seguro  
+**Día 317:** Proyecto 3 ejecución pipeline GitLab CI  
+**Día 318:** Proyecto 3 integración SAST DAST SCA  
+**Día 319:** Proyecto 3 integración escaneo IaC contenedores  
+**Día 320:** Proyecto 3 validación pruebas extremo extremo  
+**Día 321:** Proyecto 3 documentación README proyecto  
+**Día 322:** Publicación Proyecto 3 portfolio  
+**Día 323:** Creación CV técnico orientado resultados  
+**Día 324:** Optimización perfil LinkedIn reclutadores  
+**Día 325:** Estrategias networking búsqueda empleo  
+**Día 326:** Preparación entrevistas RRHH contar historia  
+**Día 327:** Preparación entrevistas técnicas preguntas comunes  
+**Día 328:** Simulacros entrevistas peer-to-peer  
+**Día 329:** Revisión final CV LinkedIn portfolio  
+**Día 330:** Aplicación ofertas entrevistas negociación  
+**Día 331:** Continuación aplicaciones y entrevistas  
+**Día 332:** Seguimiento aplicaciones y networking  
+**Día 333:** Preparación entrevistas técnicas avanzadas  
+**Día 334:** Negociación ofertas y evaluación propuestas  
+**Día 335:** Continuación proceso selección  
+**Día 336:** Networking eventos y conferencias  
+**Día 337:** Actualización portfolio con feedback  
+**Día 338:** Preparación casos estudio entrevistas  
+**Día 339:** Seguimiento activo aplicaciones  
+**Día 340:** Evaluación y ajuste estrategia búsqueda  
+**Día 341:** Continuación entrevistas y seguimientos  
+**Día 342:** Networking con profesionales sector  
+**Día 343:** Actualización CV con nuevos proyectos  
+**Día 344:** Preparación presentaciones técnicas  
+**Día 345:** Seguimiento ofertas y negociaciones  
+**Día 346:** Evaluación propuestas laborales  
+**Día 347:** Decisión final ofertas trabajo  
+**Día 348:** Preparación incorporación nuevo puesto  
+**Día 349:** Últimos ajustes documentación profesional  
+**Día 350:** Networking mantenimiento contactos  
+**Día 351:** Planificación desarrollo profesional continuo  
+**Día 352:** Evaluación objetivos conseguidos  
+**Día 353:** Preparación transición laboral  
+**Día 354:** Documentación lecciones aprendidas  
+**Día 355:** Planificación formación continua  
+**Día 356:** Networking y mentoría otros estudiantes  
+**Día 357:** Actualización final portfolio  
+**Día 358:** Preparación última semana programa  
+**Día 359:** Reflexión sobre transformación profesional  
+**Día 360:** Preparación ceremonia finalización  
+**Día 361:** Repaso completo contenido curso  
+**Día 362:** Contribución proyectos Open Source  
+**Día 363:** Planificación aprendizaje continuo  
+**Día 364:** Sesión mentoría estrategia carrera  
+**Día 365:** FIN DEL RETO lanzamiento carrera Cloud Security Engineer
+
+</details>
+
+</details>
+
+---
+
+### Contenido del Programa
+
+El programa incluye acceso completo a:
+
+- **Acceso vitalicio al repositorio privado** con los 365 días de contenido técnico
+- **Guías diarias detalladas** en formato Markdown con explicaciones y comandos
+- **Laboratorios prácticos semanales** para aplicación real del conocimiento
+- **Scripts y plantillas de configuración** listos para usar en producción
+- **Guías de estudio específicas** para las 5 certificaciones técnicas
+- **Portfolio de proyectos profesional** para demostrar competencias
+- **Actualizaciones periódicas** del material para mantener relevancia
+
+### Acceso al Programa
+
+El acceso al programa completo se gestiona a través de una plataforma segura. Una vez procesada la adquisición, recibirás invitación al repositorio privado para comenzar la formación.
+
+<div align="center">
+  <strong>[ INFORMACIÓN DE COMPRA PRÓXIMAMENTE ]</strong>
+</div>
+
+---
+
+<div align="center">
+  <small>Copyright © 2025 - Darko-ltk - Todos los derechos reservados</small>
+</div>
+
+<!-- Aquí añadiremos el contenido de evaluación gratuita -->
+<h2 id="semana-1-contenido-de-evaluación"></h2>
+
