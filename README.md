@@ -554,3 +554,102 @@ El acceso al programa completo se gestiona a través de una plataforma segura. U
 <!-- Aquí añadiremos el contenido de evaluación gratuita -->
 <h2 id="semana-1-contenido-de-evaluación"></h2>
 
+---
+
+### **Acceso al Programa Completo**
+
+El programa **Hacklab365** representa una inversión estratégica en tu futuro profesional. El acceso incluye:
+
+- **Repositorio privado con 365 días de contenido técnico** estructurado y actualizado
+- **Laboratorios prácticos diarios** con entornos reales de producción
+- **Scripts y herramientas de automatización** desarrollados durante el programa
+- **Guías de preparación para 5 certificaciones** reconocidas internacionalmente
+- **Portfolio profesional completo** con proyectos documentados
+- **Acceso vitalicio** a actualizaciones y nuevo contenido
+- **Comunidad privada** de profesionales graduados del programa
+
+### **Proceso de Admisión**
+
+El acceso al programa se gestiona mediante invitación directa al repositorio privado tras la confirmación de inscripción. Los participantes reciben credenciales de acceso y orientación inicial para comenzar el día 1.
+
+<div align="center">
+  <strong>[ INFORMACIÓN DE ACCESO DISPONIBLE PRÓXIMAMENTE ]</strong>
+</div>
+
+---
+
+## **El Desafío de los 365 Días**
+
+### **¿Estás Preparado para la Transformación Completa?**
+
+Este no es un curso convencional. Es un programa de inmersión total diseñado para individuos que buscan dominar tanto la **construcción** como la **destrucción** de sistemas digitales. En 365 días, desarrollarás una comprensión dual única en el mercado:
+
+**Como Arquitecto de Sistemas:**
+- Diseñarás infraestructuras que soporten millones de usuarios
+- Implementarás medidas de seguridad que protejan activos críticos
+- Automatizarás despliegues que otras organizaciones envidiarán
+
+**Como Especialista en Seguridad Ofensiva:**
+- Pensarás como un atacante para anticipar vulnerabilidades
+- Dominarás las mismas herramientas que usan los equipos de Red Team élite
+- Desarrollarás la mentalidad necesaria para encontrar lo que otros no ven
+
+### **La Metodología del Hacker Ético Profesional**
+
+El programa sigue la filosofía del **"Hacker Constructivo"** - profesionales que entienden profundamente los sistemas porque saben tanto construirlos como comprometerlos de manera ética. Esta dualidad te convierte en un activo invaluable:
+
+- **Día 1-91:** Construyes la base sólida - Dominas Linux hasta el nivel de un administrador senior
+- **Día 92-161:** Implementas la defensa - Te conviertes en el guardián que otros sistemas necesitan  
+- **Día 162-245:** Adoptas la mentalidad ofensiva - Aprendes a pensar como quien intenta comprometer lo que construiste
+- **Día 246-365:** Integras ambos mundos - Te especializas en Cloud Security con una perspectiva única
+
+### **El Factor Diferencial**
+
+Mientras otros programas te enseñan a usar herramientas, **Hacklab365** te enseña a **pensar** como un profesional de élite. Al finalizar, no serás solo otro administrador de sistemas o otro pentester. Serás el profesional que:
+
+- **Diseña infraestructuras** pensando en todos los vectores de ataque posibles
+- **Implementa defensas** porque conoce exactamente cómo funcionan los ataques
+- **Automatiza la seguridad** porque entiende tanto el desarrollo como la explotación
+- **Lidera equipos técnicos** porque domina el espectro completo de la tecnología
+
+### **Tu Transformación en Números**
+
+Al completar los 365 días, habrás:
+
+- **Configurado más de 100 servicios diferentes** en entornos de producción
+- **Ejecutado más de 50 laboratorios de hacking ético** en entornos controlados  
+- **Automatizado más de 30 procesos críticos** con scripts y herramientas IaC
+- **Obtenido 5 certificaciones reconocidas** que validan tu expertise
+- **Desarrollado un portfolio** que demuestra competencias reales, no teóricas
+
+### **El Momento de la Decisión**
+
+La industria necesita profesionales que entiendan la tecnología desde ambos lados. Las organizaciones buscan desesperadamente individuos que puedan tanto construir sistemas robustos como identificar sus debilidades antes que los atacantes.
+
+**¿Serás uno de los pocos que domine ambos mundos?**
+
+El programa **Hacklab365** no es para todos. Está diseñado para individuos con la disciplina para dedicar 2 horas diarias durante 365 días consecutivos a su transformación profesional. Si estás dispuesto a hacer esa inversión en ti mismo, el retorno será exponencial.
+
+---
+
+<div align="center">
+  <h3>🚀 La Élite Tecnológica Te Está Esperando</h3>
+  <p><em>"En un mundo donde la seguridad es crítica, los que dominan tanto la construcción como la penetración de sistemas se convierten en los arquitectos del futuro digital."</em></p>
+</div>
+
+---
+
+<div align="center">
+  <small>Copyright © 2025 - Darko-ltk - Todos los derechos reservados</small>
+</div>
+
+<!-- Sección de contenido gratuito para futura implementación -->
+<h2 id="semana-1-contenido-de-evaluación"></h2>
+
+<!-- 
+    ### PRÓXIMOS PASOS ###
+    1. Crear carpeta /semana-01-muestra-gratuita/ con el contenido de los 7 días
+    2. Implementar sistema de venta/acceso al repositorio privado
+    3. Configurar comunidad privada para graduados del programa
+-->
+
