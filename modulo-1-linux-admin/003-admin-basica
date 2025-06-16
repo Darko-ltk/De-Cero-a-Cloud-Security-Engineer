@@ -1,0 +1,423 @@
+
+DÍA 3: ADMINISTRACIÓN BÁSICA DEL SISTEMA
+
+Objetivo: Dominar la estructura del sistema de archivos Linux y comandos fundamentales de administración
+
+ESTRUCTURA DEL SISTEMA DE ARCHIVOS LINUX
+El Sistema de Archivos Jerárquico (FHS)
+Linux utiliza una estructura de directorios estándar llamada Filesystem Hierarchy Standard (FHS). Como futuro Cloud Security Engineer, debes dominar esta estructura porque:
+    • Logs de seguridad se almacenan en ubicaciones específicas (/var/log/)
+    • Configuraciones críticas están en directorios predefinidos (/etc/)
+    • Binarios del sistema tienen ubicaciones estándar (/usr/bin/, /sbin/)
+    • Archivos temporales y procesos tienen sus propios espacios (/tmp/, /proc/)
+Directorios Fundamentales
+Directorio raíz (/):
+# Ver la estructura raíz
+ls -la /
+Con ls -la seguido de los nombres de archivo iremos viendo cosas interesantes:
+
+Directorios críticos que debes conocer:
+/etc/ - Archivos de configuración
+# Configuraciones del sistema
+ls -la /etc/
+
+Seguimos:
+# Ejemplos críticos para seguridad:
+/etc/passwd          # Usuarios del sistema
+/etc/shadow          # Contraseñas encriptadas
+/etc/ssh/sshd_config # Configuración SSH
+/etc/hosts           # Resolución de nombres local
+/etc/fstab           # Sistemas de archivos montados
+
+/var/ - Datos variables
+# Logs del sistema (CRÍTICO para seguridad)
+ls -la /var/log/
+
+# Logs importantes:
+/var/log/syslog      # Log general del sistema
+/var/log/auth.log    # Intentos de autenticación
+/var/log/kern.log    # Mensajes del kernel
+/var/log/apache2/    # Logs del servidor web
+/var/log/mysql/      # Logs de base de datos
+
+/home/ - Directorios de usuarios
+# Directorios personales
+ls -la /home/
+
+# Tu directorio personal
+ls -la /home/admin/
+
+/usr/ - Programas de usuario
+# Binarios de usuario
+ls -la /usr/bin/
+
+# Bibliotecas del sistema
+ls -la /usr/lib/
+
+# Documentación
+ls -la /usr/share/doc/
+
+/proc/ - Sistema de archivos virtual
+# Información de procesos en tiempo real
+ls -la /proc/
+
+# Información del sistema:
+cat /proc/cpuinfo    # Información del CPU
+cat /proc/meminfo    # Información de memoria
+cat /proc/version    # Versión del kernel
+
+🔍 COMANDOS DE NAVEGACIÓN AVANZADOS
+Navegación Eficiente
+Comandos básicos mejorados:
+# Listar con información detallada
+ls -lah /etc/          # Formato largo, archivos ocultos, tamaños legibles
+
+# Listar por fecha de modificación
+ls -lt /var/log/       # Ordenado por tiempo (más reciente primero)
+
+# Listar recursivamente
+ls -R /etc/ssh/        # Muestra subdirectorios también
+
+# Mostrar solo directorios
+ls -d */               # Solo directorios en ubicación actual
+
+Navegación inteligente:
+# Cambiar al directorio anterior
+cd -
+
+# Ir al directorio padre
+cd ..
+
+# Ir dos niveles arriba
+cd ../..
+
+# Ir al directorio home del usuario
+cd ~
+cd $HOME
+
+# Ir al directorio raíz
+cd /
+
+Comando pwd (Print Working Directory):
+# Mostrar directorio actual
+pwd
+
+# Mostrar directorio actual con enlaces simbólicos resueltos
+pwd -P
+
+Búsqueda y Localización de Archivos
+Comando find - Búsqueda avanzada:
+# Buscar archivos por nombre
+find /etc/ -name "*.conf"
+
+# Buscar archivos modificados en las últimas 24 horas
+find /var/log/ -mtime -1
+
+# Buscar archivos por tamaño
+find /home/ -size +100M
+
+# Buscar archivos con permisos específicos
+find /etc/ -perm 644
+
+# Buscar archivos ejecutables
+find /usr/bin/ -type f -executable
+
+Comando locate - Búsqueda rápida:
+# Actualizar base de datos de locate
+sudo updatedb
+
+# Buscar archivos por nombre (más rápido que find)
+locate sshd_config
+locate "*.log"
+
+Comando which - Localizar ejecutables:
+# Encontrar ubicación de comandos
+which python3
+which ssh
+which apache2
+
+GESTIÓN AVANZADA DE ARCHIVOS Y DIRECTORIOS
+Creación y Manipulación
+Crear directorios:
+# Crear directorio simple
+mkdir laboratorio
+
+# Crear estructura de directorios
+mkdir -p proyectos/web/apache/logs
+
+# Crear múltiples directorios
+mkdir dir1 dir2 dir3
+
+# Crear directorio con permisos específicos
+mkdir -m 755 directorio_publico
+
+Crear archivos:
+# Crear archivo vacío
+touch archivo.txt
+
+# Crear múltiples archivos
+touch file1.txt file2.txt file3.txt
+
+# Crear archivo con timestamp específico
+touch -t 202506171200 archivo_fecha.txt
+
+Copia y Movimiento de Archivos
+Comando cp - Copiar:
+# Copia simple
+cp archivo.txt copia_archivo.txt
+
+# Copia preservando atributos
+cp -p archivo.txt /tmp/
+
+# Copia recursiva de directorios
+cp -r directorio/ /backup/
+
+# Copia con confirmación
+cp -i archivo.txt destino/
+
+# Copia verbose (muestra progreso)
+cp -v archivo.txt /tmp/
+
+Comando mv - Mover/Renombrar:
+# Mover archivo
+mv archivo.txt /tmp/
+
+# Renombrar archivo
+mv nombre_viejo.txt nombre_nuevo.txt
+
+# Mover múltiples archivos
+mv *.txt /documentos/
+
+# Mover con confirmación
+mv -i archivo.txt destino/
+
+Comando rm - Eliminar:
+# Eliminar archivo
+rm archivo.txt
+
+# Eliminar con confirmación
+rm -i archivo.txt
+
+# Eliminar recursivamente (¡CUIDADO!)
+rm -r directorio/
+
+# Eliminar forzado (¡EXTREMO CUIDADO!)
+rm -rf directorio/
+
+# Eliminar archivos por patrón
+rm *.tmp
+
+Visualización de Contenido
+Comando cat - Mostrar contenido completo:
+# Mostrar archivo completo
+cat /etc/hostname
+
+# Mostrar múltiples archivos
+cat file1.txt file2.txt
+
+# Mostrar con números de línea
+cat -n /etc/passwd
+
+# Mostrar caracteres especiales
+cat -A archivo.txt
+
+Comando head - Primeras líneas:
+# Mostrar primeras 10 líneas (por defecto)
+head /var/log/syslog
+
+# Mostrar primeras 20 líneas
+head -n 20 /var/log/syslog
+
+# Mostrar primeros 1KB
+head -c 1024 archivo.txt
+
+Comando tail - Últimas líneas:
+# Mostrar últimas 10 líneas
+tail /var/log/syslog
+
+# Mostrar últimas 50 líneas
+tail -n 50 /var/log/auth.log
+
+# Seguir archivo en tiempo real (CRÍTICO para monitoreo)
+tail -f /var/log/syslog
+
+# Seguir múltiples archivos
+tail -f /var/log/syslog /var/log/auth.log
+
+Comando less - Visualización paginada:
+# Abrir archivo para navegación
+less /var/log/syslog
+
+# Comandos dentro de less:
+# q - salir
+# / - buscar hacia adelante
+# ? - buscar hacia atrás
+# n - siguiente resultado
+# N - resultado anterior
+# G - ir al final
+# g - ir al inicio
+
+INFORMACIÓN DEL SISTEMA
+Estado del Sistema
+Información de hardware:
+# Información del CPU
+lscpu
+
+# Información de memoria
+free -h
+
+# Información de disco
+df -h
+
+# Uso de disco por directorio
+du -sh /var/log/
+
+# Información de dispositivos de bloque
+lsblk
+
+# Información PCI
+lspci
+
+# Información USB
+lsusb
+
+Información del kernel y sistema:
+# Información del kernel
+uname -a
+
+# Versión del sistema operativo
+cat /etc/os-release
+
+# Tiempo de actividad del sistema
+uptime
+
+# Usuarios conectados
+who
+w
+
+# Último acceso de usuarios
+last
+
+# Información detallada del sistema
+hostnamectl
+
+Procesos y Servicios
+Comando ps - Procesos:
+# Procesos del usuario actual
+ps
+
+# Todos los procesos
+ps aux
+
+# Procesos en formato árbol
+ps auxf
+
+# Procesos de un usuario específico
+ps -u admin
+
+# Buscar proceso específico
+ps aux | grep ssh
+
+Comando top - Monitor en tiempo real:
+# Monitor interactivo de procesos
+top
+
+# Comandos dentro de top:
+# q - salir
+# k - matar proceso
+# r - cambiar prioridad
+# M - ordenar por memoria
+# P - ordenar por CPU
+
+Comando htop - Monitor mejorado:
+# Instalar htop
+sudo apt install htop
+
+# Ejecutar monitor mejorado
+htop
+
+📚 RECURSOS GRATUITOS PARA HOY
+Recurso Principal: Linux Journey - File System
+URL: https://linuxjourney.com/lesson/filesystem-hierarchy
+Módulos específicos para hoy:
+    • Filesystem Hierarchy: Estructura completa del sistema de archivos
+    • File System Types: Tipos de sistemas de archivos
+    • Anatomy of a Disk: Comprensión del almacenamiento
+Recurso Complementario: Comandos Linux Esenciales
+URL: https://itsfoss.com/es/comandos-linux-esenciales/
+Secciones relevantes:
+    • Navegación básica: Comandos de movimiento
+    • Gestión de archivos: Operaciones fundamentales
+    • Información del sistema: Comandos de diagnóstico
+Recurso de Práctica: ExplainShell
+URL: https://explainshell.com/
+Utilidad:
+    • Explicación detallada de comandos complejos
+    • Desglose de opciones y parámetros
+    • Comprensión de sintaxis avanzada
+Documentación Oficial Ubuntu
+URL: https://ubuntu.com/server/docs/package-management
+Contenido clave:
+    • Gestión de paquetes APT
+    • Mantenimiento del sistema
+    • Comandos administrativos
+🛠️ EJERCICIOS PRÁCTICOS DEL DÍA
+Laboratorio 1: Exploración del Sistema de Archivos
+# 1. Explorar estructura raíz
+ls -la /
+
+# 2. Examinar configuraciones críticas
+ls -la /etc/ | head -20
+
+# 3. Revisar logs de seguridad
+ls -la /var/log/
+
+# 4. Verificar usuarios del sistema
+cat /etc/passwd | head -10
+
+# 5. Examinar procesos del sistema
+cat /proc/cpuinfo | head -10
+
+Laboratorio 2: Práctica de Comandos
+# 1. Crear estructura de directorios para laboratorio
+mkdir -p ~/laboratorio/{web,database,security}/{config,logs,backup}
+
+# 2. Crear archivos de prueba
+touch ~/laboratorio/web/config/apache.conf
+touch ~/laboratorio/database/logs/mysql.log
+touch ~/laboratorio/security/backup/firewall_rules.txt
+
+# 3. Copiar archivos del sistema para práctica
+cp /etc/hostname ~/laboratorio/
+cp /etc/hosts ~/laboratorio/
+
+# 4. Buscar archivos de configuración
+find /etc/ -name "*.conf" | head -10
+
+# 5. Monitorear logs en tiempo real
+sudo tail -f /var/log/syslog
+
+Laboratorio 3: Información del Sistema
+# 1. Recopilar información completa del sistema
+echo "=== INFORMACIÓN DEL SISTEMA ===" > ~/system_info.txt
+echo "Fecha: $(date)" >> ~/system_info.txt
+echo "Usuario: $(whoami)" >> ~/system_info.txt
+echo "Hostname: $(hostname)" >> ~/system_info.txt
+uname -a >> ~/system_info.txt
+
+# 2. Información de hardware
+echo "=== HARDWARE ===" >> ~/system_info.txt
+lscpu | head -10 >> ~/system_info.txt
+free -h >> ~/system_info.txt
+df -h >> ~/system_info.txt
+
+# 3. Procesos activos
+echo "=== PROCESOS ===" >> ~/system_info.txt
+ps aux | head -10 >> ~/system_info.txt
+
+# 4. Ver el archivo creado
+cat ~/system_info.txt
+
+
+📊 Progreso general: 3/365 días (0.82%)
+Mañana profundizaremos en el sistema de permisos de Linux y la gestión de usuarios, elementos críticos para la seguridad de sistemas.
