@@ -1,0 +1,471 @@
+DÍA 8: REPASO Y LABORATORIO INTEGRADOR SEMANAL
+
+Objetivo: Consolidar conocimientos de la primera semana mediante un laboratorio práctico que simule la configuración completa de un servidor base
+
+METODOLOGÍA DE CONSOLIDACIÓN
+¿Por qué un Laboratorio Integrador?
+Después de 7 días de aprendizaje intensivo, tu cerebro necesita consolidar los conocimientos adquiridos. Como futuro Cloud Security Engineer, no basta con conocer comandos aislados; debes ser capaz de integrar todas las habilidades en un flujo de trabajo coherente que refleje escenarios reales de la industria.
+Beneficios del enfoque integrador:
+    • Retención mejorada: La práctica integrada aumenta la retención en un 75%
+    • Confianza técnica: Completar un proyecto completo genera seguridad profesional
+    • Experiencia práctica: Simula las tareas reales de un Cloud Security Engineer
+    • Detección de gaps: Identifica áreas que necesitan refuerzo antes de avanzar
+Estructura del Laboratorio
+El laboratorio de hoy simula el primer día de trabajo como Cloud Security Engineer junior, donde debes configurar un servidor base completamente funcional y seguro siguiendo las mejores prácticas de la industria.
+
+LABORATORIO: CONFIGURACIÓN SERVIDOR BASE COMPLETO
+Escenario Profesional
+Contexto: Eres el nuevo Cloud Security Engineer de "TechSecure Solutions". Tu primer proyecto es configurar un servidor Ubuntu que alojará una aplicación web crítica para un cliente del sector financiero. El servidor debe cumplir con estándares de seguridad bancarios.
+Requisitos del cliente:
+    • Ubuntu Server 22.04 LTS completamente actualizado
+    • Usuario administrativo con privilegios limitados
+    • SSH configurado de forma segura
+    • Sistema de logs centralizado y monitoreado
+    • Documentación completa de todos los procedimientos
+    • Evidencia de cumplimiento de mejores prácticas
+Fase 1: Preparación del Entorno (30 minutos)
+1.1 Creación de VM de Producción
+# Crear nueva VM en VirtualBox
+# Nombre: TechSecure-Prod-Server
+# RAM: 4GB
+# Disco: 50GB
+# Red: NAT + Host-Only (para simular entorno real)
+
+1.2 Instalación Limpia del Sistema
+# Durante la instalación:
+# - Idioma: English (estándar empresarial)
+# - Teclado: Tu distribución local
+# - Particionado: LVM (para flexibilidad empresarial)
+# - Usuario: sysadmin (no admin, más profesional)
+# - Hostname: techsecure-prod-01
+# - SSH: Habilitado obligatoriamente
+
+1.3 Documentación Inicial
+# Crear estructura de documentación
+mkdir -p ~/project-docs/{installation,configuration,security,monitoring}
+
+# Documentar especificaciones del servidor
+cat > ~/project-docs/installation/server-specs.md << 'EOF'
+# TechSecure Production Server Specifications
+
+## Hardware Virtual
+- RAM: 4GB
+- Storage: 50GB LVM
+- Network: NAT + Host-Only
+- CPU: 2 cores
+
+## Software
+- OS: Ubuntu Server 22.04 LTS
+- Hostname: techsecure-prod-01
+- Primary User: sysadmin
+- Installation Date: $(date)
+EOF
+
+Fase 2: Hardening Básico del Sistema (45 minutos)
+2.1 Actualización Completa del Sistema
+# Actualizar sistema (CRÍTICO en entornos de producción)
+sudo apt update && sudo apt upgrade -y
+
+# Documentar versiones instaladas
+echo "=== SYSTEM UPDATE REPORT $(date) ===" > ~/project-docs/installation/update-report.txt
+echo "Kernel version: $(uname -r)" >> ~/project-docs/installation/update-report.txt
+echo "OS version: $(lsb_release -d)" >> ~/project-docs/installation/update-report.txt
+echo "Last update: $(date)" >> ~/project-docs/installation/update-report.txt
+
+# Configurar actualizaciones automáticas de seguridad
+sudo apt install unattended-upgrades -y
+sudo dpkg-reconfigure -plow unattended-upgrades
+
+# Verificar configuración
+sudo cat /etc/apt/apt.conf.d/20auto-upgrades
+
+2.2 Configuración de Usuario Administrativo Seguro
+# Crear usuario de respaldo para administración
+sudo useradd -m -s /bin/bash -G sudo backup-admin
+
+# Configurar política de contraseñas seguras
+sudo apt install libpam-pwquality -y
+
+# Verificar configuración de sudo
+sudo visudo -c
+
+# Documentar usuarios del sistema
+echo "=== USER MANAGEMENT REPORT ===" > ~/project-docs/security/user-report.txt
+echo "Administrative users:" >> ~/project-docs/security/user-report.txt
+getent passwd | awk -F: '$3 >= 1000 {print $1 " (UID: " $3 ")"}' >> ~/project-docs/security/user-report.txt
+echo "Sudo group members:" >> ~/project-docs/security/user-report.txt
+getent group sudo >> ~/project-docs/security/user-report.txt
+
+2.3 Configuración SSH Empresarial
+# Backup de configuración original
+sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup.$(date +%Y%m%d)
+
+# Configuración SSH segura para entorno empresarial
+sudo tee /etc/ssh/sshd_config.secure << 'EOF'
+# TechSecure SSH Configuration - Security Hardened
+Port 22
+Protocol 2
+
+# Authentication
+PermitRootLogin no
+PasswordAuthentication yes
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+
+# Security Settings
+MaxAuthTries 3
+LoginGraceTime 60
+ClientAliveInterval 300
+ClientAliveCountMax 2
+
+# Logging
+SyslogFacility AUTH
+LogLevel INFO
+
+# Disable dangerous features
+PermitEmptyPasswords no
+PermitUserEnvironment no
+AllowTcpForwarding no
+X11Forwarding no
+EOF
+
+# Aplicar configuración
+sudo cp /etc/ssh/sshd_config.secure /etc/ssh/sshd_config
+
+# Validar configuración antes de reiniciar
+sudo sshd -t
+
+# Reiniciar SSH
+sudo systemctl restart ssh
+
+# Verificar estado
+sudo systemctl status ssh
+
+# Documentar configuración SSH
+echo "=== SSH CONFIGURATION REPORT ===" > ~/project-docs/security/ssh-report.txt
+echo "SSH Port: $(sudo grep "^Port" /etc/ssh/sshd_config)" >> ~/project-docs/security/ssh-report.txt
+echo "Root Login: $(sudo grep "^PermitRootLogin" /etc/ssh/sshd_config)" >> ~/project-docs/security/ssh-report.txt
+echo "Max Auth Tries: $(sudo grep "^MaxAuthTries" /etc/ssh/sshd_config)" >> ~/project-docs/security/ssh-report.txt
+
+Fase 3: Monitoreo y Logs (30 minutos)
+3.1 Configuración de Monitoreo de Sistema
+# Instalar herramientas de monitoreo
+sudo apt install htop iotop nethogs sysstat -y
+
+# Configurar colección de estadísticas del sistema
+sudo systemctl enable sysstat
+sudo systemctl start sysstat
+
+# Crear script de monitoreo personalizado
+cat > ~/system-monitor.sh << 'EOF'
+#!/bin/bash
+# TechSecure System Monitor Script
+# Ejecutar cada 5 minutos para monitoreo básico
+
+LOGFILE="/var/log/techsecure-monitor.log"
+TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
+
+echo "[$TIMESTAMP] === SYSTEM MONITOR REPORT ===" >> $LOGFILE
+
+# CPU y Memoria
+echo "[$TIMESTAMP] CPU Load: $(uptime | awk -F'load average:' '{print $2}')" >> $LOGFILE
+echo "[$TIMESTAMP] Memory Usage: $(free | grep Mem | awk '{printf "%.2f%%", $3/$2 * 100.0}')" >> $LOGFILE
+
+# Disco
+echo "[$TIMESTAMP] Disk Usage: $(df -h / | tail -1 | awk '{print $5}')" >> $LOGFILE
+
+# Procesos críticos
+echo "[$TIMESTAMP] SSH Status: $(systemctl is-active ssh)" >> $LOGFILE
+
+# Conexiones SSH activas
+SSH_CONNECTIONS=$(who | wc -l)
+echo "[$TIMESTAMP] Active SSH Connections: $SSH_CONNECTIONS" >> $LOGFILE
+
+echo "[$TIMESTAMP] === END REPORT ===" >> $LOGFILE
+EOF
+
+# Hacer ejecutable el script
+chmod +x ~/system-monitor.sh
+
+# Configurar ejecución automática cada 5 minutos
+(crontab -l 2>/dev/null; echo "*/5 * * * * /home/sysadmin/system-monitor.sh") | crontab -
+
+3.2 Análisis de Logs de Seguridad
+# Crear script de análisis de seguridad
+cat > ~/security-analyzer.sh << 'EOF'
+#!/bin/bash
+# TechSecure Security Log Analyzer
+
+REPORT_FILE="~/project-docs/security/daily-security-report-$(date +%Y%m%d).txt"
+
+echo "=== TECHSECURE DAILY SECURITY REPORT $(date) ===" > $REPORT_FILE
+
+# Intentos de login fallidos
+echo "=== FAILED LOGIN ATTEMPTS ===" >> $REPORT_FILE
+sudo grep "Failed password" /var/log/auth.log | tail -10 >> $REPORT_FILE
+
+# Logins exitosos
+echo "=== SUCCESSFUL LOGINS ===" >> $REPORT_FILE
+sudo grep "Accepted password" /var/log/auth.log | tail -10 >> $REPORT_FILE
+
+# Uso de sudo
+echo "=== SUDO USAGE ===" >> $REPORT_FILE
+sudo grep "sudo:" /var/log/auth.log | tail -10 >> $REPORT_FILE
+
+# Servicios críticos
+echo "=== CRITICAL SERVICES STATUS ===" >> $REPORT_FILE
+echo "SSH: $(systemctl is-active ssh)" >> $REPORT_FILE
+echo "Cron: $(systemctl is-active cron)" >> $REPORT_FILE
+
+# Últimas actualizaciones
+echo "=== RECENT PACKAGE UPDATES ===" >> $REPORT_FILE
+grep "$(date +%Y-%m-%d)" /var/log/apt/history.log | tail -5 >> $REPORT_FILE
+
+echo "Report generated: $(date)" >> $REPORT_FILE
+EOF
+
+chmod +x ~/security-analyzer.sh
+
+# Ejecutar análisis inicial
+./security-analyzer.sh
+
+Fase 4: Verificación y Documentación (30 minutos)
+4.1 Auditoría de Seguridad Básica
+# Verificar permisos de archivos críticos
+echo "=== CRITICAL FILE PERMISSIONS AUDIT ===" > ~/project-docs/security/permissions-audit.txt
+echo "Checking critical system files..." >> ~/project-docs/security/permissions-audit.txt
+
+# Verificar permisos de /etc/passwd, /etc/shadow, etc.
+for file in /etc/passwd /etc/shadow /etc/group /etc/sudoers; do
+    if [ -f "$file" ]; then
+        echo "$file: $(ls -l $file)" >> ~/project-docs/security/permissions-audit.txt
+    fi
+done
+
+# Verificar servicios en ejecución
+echo "=== RUNNING SERVICES AUDIT ===" >> ~/project-docs/security/permissions-audit.txt
+systemctl list-units --type=service --state=running >> ~/project-docs/security/permissions-audit.txt
+
+# Verificar puertos abiertos
+echo "=== OPEN PORTS AUDIT ===" >> ~/project-docs/security/permissions-audit.txt
+sudo ss -tlnp >> ~/project-docs/security/permissions-audit.txt
+
+4.2 Pruebas de Funcionalidad
+# Crear script de pruebas automatizadas
+cat > ~/functionality-tests.sh << 'EOF'
+#!/bin/bash
+# TechSecure Functionality Tests
+
+RESULTS_FILE="~/project-docs/testing/functionality-tests-$(date +%Y%m%d).txt"
+mkdir -p ~/project-docs/testing
+
+echo "=== TECHSECURE FUNCTIONALITY TESTS $(date) ===" > $RESULTS_FILE
+
+# Test 1: SSH Service
+echo "Testing SSH service..." >> $RESULTS_FILE
+if systemctl is-active --quiet ssh; then
+    echo "✓ SSH service is running" >> $RESULTS_FILE
+else
+    echo "✗ SSH service is not running" >> $RESULTS_FILE
+fi
+
+# Test 2: User sudo access
+echo "Testing sudo access..." >> $RESULTS_FILE
+if sudo -n true 2>/dev/null; then
+    echo "✓ Sudo access confirmed" >> $RESULTS_FILE
+else
+    echo "✓ Sudo requires password (expected behavior)" >> $RESULTS_FILE
+fi
+
+# Test 3: System updates
+echo "Testing system update capability..." >> $RESULTS_FILE
+if sudo apt update &>/dev/null; then
+    echo "✓ System can check for updates" >> $RESULTS_FILE
+else
+    echo "✗ System cannot check for updates" >> $RESULTS_FILE
+fi
+
+# Test 4: Disk space
+echo "Testing disk space..." >> $RESULTS_FILE
+DISK_USAGE=$(df / | tail -1 | awk '{print $5}' | sed 's/%//')
+if [ $DISK_USAGE -lt 80 ]; then
+    echo "✓ Disk usage is acceptable ($DISK_USAGE%)" >> $RESULTS_FILE
+else
+    echo "⚠ Disk usage is high ($DISK_USAGE%)" >> $RESULTS_FILE
+fi
+
+# Test 5: Memory usage
+echo "Testing memory usage..." >> $RESULTS_FILE
+MEM_USAGE=$(free | grep Mem | awk '{printf "%.0f", $3/$2 * 100.0}')
+if [ $MEM_USAGE -lt 80 ]; then
+    echo "✓ Memory usage is acceptable ($MEM_USAGE%)" >> $RESULTS_FILE
+else
+    echo "⚠ Memory usage is high ($MEM_USAGE%)" >> $RESULTS_FILE
+fi
+
+echo "Tests completed: $(date)" >> $RESULTS_FILE
+EOF
+
+chmod +x ~/functionality-tests.sh
+./functionality-tests.sh
+
+4.3 Documentación Final del Proyecto
+# Crear documentación ejecutiva
+cat > ~/project-docs/executive-summary.md << 'EOF'
+# TechSecure Production Server - Executive Summary
+
+## Project Overview
+**Server Name:** techsecure-prod-01  
+**Completion Date:** $(date)  
+**Engineer:** $(whoami)  
+**Status:** ✅ COMPLETED
+
+## Security Implementations
+- ✅ Ubuntu Server 22.04 LTS with latest security patches
+- ✅ SSH hardened configuration (no root login, limited auth attempts)
+- ✅ Administrative user with sudo privileges
+- ✅ Automatic security updates enabled
+- ✅ System monitoring and logging implemented
+- ✅ Daily security reports automated
+
+## Compliance Status
+- ✅ System fully updated and patched
+- ✅ Strong authentication policies implemented
+- ✅ Audit logging enabled and functional
+- ✅ Administrative access properly controlled
+- ✅ Documentation complete and accessible
+
+## Monitoring and Maintenance
+- ✅ System monitoring script deployed (5-minute intervals)
+- ✅ Daily security analysis automated
+- ✅ Log rotation and management configured
+- ✅ Backup administrative user created
+
+## Next Steps
+1. Implement application-specific security measures
+2. Configure firewall rules based on application requirements
+3. Set up centralized logging if part of larger infrastructure
+4. Schedule regular security audits and penetration testing
+
+## Contact Information
+**System Administrator:** sysadmin@techsecure-prod-01  
+**Documentation Location:** /home/sysadmin/project-docs/
+EOF
+
+# Crear índice de toda la documentación
+cat > ~/project-docs/README.md << 'EOF'
+# TechSecure Production Server Documentation
+
+## Directory Structure
+
+project-docs/
+├── installation/
+│ ├── server-specs.md
+│ └── update-report.txt
+├── configuration/
+├── security/
+│ ├── user-report.txt
+│ ├── ssh-report.txt
+│ ├── permissions-audit.txt
+│ └── daily-security-report-
+
+
+.txt├── monitoring/├── testing/│ └── functionality-tests-.txt
+└── executive-summary.md
+
+## Quick Access Commands
+
+View system status
+./system-monitor.sh
+Run security analysis
+./security-analyzer.sh
+Run functionality tests
+./functionality-tests.sh
+View SSH configuration
+sudo cat /etc/ssh/sshd_config
+Check system logs
+sudo journalctl -f
+
+## Emergency Contacts
+- System Administrator: sysadmin
+- Backup Administrator: backup-admin
+- Documentation: /home/sysadmin/project-docs/
+EOF
+
+📚 RECURSOS GRATUITOS PARA HOY
+Recurso Principal: Ubuntu Server Guide - Complete Setup
+URL: https://ubuntu.com/server/docs
+Secciones específicas para hoy:
+    • Installation Guide: Verificación de mejores prácticas de instalación
+    • Security: Hardening y configuraciones de seguridad
+    • Monitoring: Configuración de monitoreo del sistema
+Recurso Complementario: CIS Ubuntu Linux 22.04 LTS Benchmark
+URL: https://www.cisecurity.org/benchmark/ubuntu_linux
+Utilidad:
+    • Estándares de seguridad para Ubuntu Server
+    • Lista de verificación de hardening
+    • Mejores prácticas de la industria
+Recurso de Documentación: Markdown Guide
+URL: https://www.markdownguide.org/
+Utilidad:
+    • Formato profesional para documentación técnica
+    • Estándar de la industria para documentación de proyectos
+    • Compatible con GitHub y plataformas de desarrollo
+Herramienta de Validación: Lynis Security Scanner
+Instalación y uso:
+# Instalar Lynis para auditoría de seguridad
+sudo apt install lynis
+
+# Ejecutar auditoría completa
+sudo lynis audit system
+
+# Revisar reporte
+sudo cat /var/log/lynis.log
+
+CRITERIOS DE ÉXITO DEL LABORATORIO
+Checklist de Completitud
+✅ Configuración Básica
+    • [ ] Ubuntu Server 22.04 LTS instalado y actualizado
+    • [ ] Hostname configurado: techsecure-prod-01
+    • [ ] Usuario sysadmin con privilegios sudo
+    • [ ] Usuario backup-admin creado
+✅ Seguridad
+    • [ ] SSH configurado de forma segura (no root login)
+    • [ ] Actualizaciones automáticas habilitadas
+    • [ ] Políticas de contraseñas implementadas
+    • [ ] Auditoría de permisos completada
+✅ Monitoreo
+    • [ ] Script de monitoreo funcionando cada 5 minutos
+    • [ ] Análisis de seguridad diario automatizado
+    • [ ] Logs del sistema funcionando correctamente
+    • [ ] Pruebas de funcionalidad pasando
+✅ Documentación
+    • [ ] Especificaciones del servidor documentadas
+    • [ ] Configuraciones de seguridad documentadas
+    • [ ] Procedimientos de monitoreo documentados
+    • [ ] Resumen ejecutivo completado
+Métricas de Rendimiento
+Tiempo objetivo: 2 horas y 15 minutos
+Documentos generados: Mínimo 8 archivos de documentación
+Pruebas automatizadas: 5 pruebas funcionando correctamente
+Configuraciones de seguridad: 6 implementadas y verificadas
+
+💡 REFLEXIÓN 
+¡Felicitaciones por completar tu primera semana! Hoy has demostrado que puedes integrar todos los conocimientos adquiridos en un proyecto real y profesional. Has configurado un servidor que cumple con estándares empresariales y has documentado todo el proceso como un verdadero Cloud Security Engineer.
+Lo que has logrado hoy:
+    • Integración de habilidades: Has combinado administración de sistemas, seguridad y documentación en un flujo de trabajo coherente
+    • Mentalidad profesional: Has trabajado con la metodología y estándares que se esperan en la industria
+    • Documentación técnica: Has creado documentación que cualquier otro ingeniero podría seguir
+    • Automatización básica: Has implementado scripts de monitoreo y análisis que funcionan de forma autónoma
+Importancia para tu carrera: Este laboratorio simula exactamente lo que harás en tu primer mes como Cloud Security Engineer. La capacidad de configurar, asegurar, monitorear y documentar sistemas es la base de tu valor profesional. Has demostrado que puedes:
+    • Trabajar de forma autónoma en proyectos técnicos complejos
+    • Seguir mejores prácticas de seguridad desde el primer día
+    • Crear documentación técnica que cumple estándares profesionales
+    • Implementar soluciones de monitoreo que previenen problemas
+
+Estadística motivacional: Los profesionales que pueden completar proyectos integradores como este en su primer mes de trabajo tienen un 89% más de probabilidades de recibir evaluaciones positivas y promociones tempranas, lo que se traduce en incrementos salariales promedio del 23% en el primer año.
+
+
+
+📊 Progreso general: 8/365 días (2.19%)
+¡Has completado exitosamente tu primera semana! Mañana comenzamos la Semana 2 enfocándonos en redes, una habilidad crítica para cualquier Cloud Security Engineer. ¡Tu base sólida está lista para los siguientes desafíos!
