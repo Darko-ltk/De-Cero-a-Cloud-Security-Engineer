@@ -537,24 +537,6 @@ El programa incluye acceso completo a:
 - **Portfolio de proyectos profesional** para demostrar competencias
 - **Actualizaciones periódicas** del material para mantener relevancia
 
-### Acceso al Programa
-
-El acceso al programa completo se gestiona a través de una plataforma segura. Una vez procesada la adquisición, recibirás invitación al repositorio privado para comenzar la formación.
-
-<div align="center">
-  <strong>[ INFORMACIÓN DE COMPRA PRÓXIMAMENTE ]</strong>
-</div>
-
----
-
-<div align="center">
-  <small>Copyright © 2025 - Darko-ltk - Todos los derechos reservados</small>
-</div>
-
-<!-- Aquí añadiremos el contenido de evaluación gratuita -->
-<h2 id="semana-1-contenido-de-evaluación"></h2>
-
----
 
 ### **Acceso al Programa Completo**
 
