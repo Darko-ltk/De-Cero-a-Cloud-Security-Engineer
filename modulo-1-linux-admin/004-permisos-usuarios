@@ -1,0 +1,434 @@
+DÍA 4: PERMISOS Y GESTIÓN DE USUARIOS
+
+Objetivo: Dominar el sistema de permisos de Linux y la gestión completa de usuarios y grupos
+
+SISTEMA DE PERMISOS DE LINUX
+Fundamentos del Sistema de Permisos
+El sistema de permisos de Linux es fundamental para la seguridad. Como futuro Cloud Security Engineer, debes dominarlo porque:
+    • Control de acceso: Determina quién puede hacer qué en el sistema
+    • Principio de menor privilegio: Base de la seguridad empresarial
+    • Auditoría de seguridad: Identificar vulnerabilidades de permisos
+    • Compliance: Cumplimiento de normativas de seguridad (ISO 27001, SOC 2)
+Estructura de Permisos
+Comando ls -l - Visualizar permisos:
+# Ver permisos detallados
+ls -l /etc/passwd
+
+# Salida típica:
+-rw-r--r-- 1 root root 1234 Jun 18 10:30 /etc/passwd
+
+Desglose de la información:
+-rw-r--r--  1  root  root  1234  Jun 18 10:30  /etc/passwd
+│││││││││││ │   │     │     │      │           │
+│││││││││││ │   │     │     │      │           └─ Nombre del archivo
+│││││││││││ │   │     │     │      └─ Fecha de modificación
+│││││││││││ │   │     │     └─ Tamaño en bytes
+│││││││││││ │   │     └─ Grupo propietario
+│││││││││││ │   └─ Usuario propietario
+│││││││││││ └─ Número de enlaces duros
+│││││││││└─ Otros: ejecutar (x)
+││││││││└─ Otros: escribir (w)
+│││││││└─ Otros: leer (r)
+││││││└─ Grupo: ejecutar (x)
+│││││└─ Grupo: escribir (w)
+││││└─ Grupo: leer (r)
+│││└─ Usuario: ejecutar (x)
+││└─ Usuario: escribir (w)
+│└─ Usuario: leer (r)
+└─ Tipo de archivo (- = archivo regular, d = directorio, l = enlace)
+
+Tipos de Permisos
+Permisos básicos:
+    • r (read/4): Leer contenido del archivo o listar directorio
+    • w (write/2): Modificar archivo o crear/eliminar archivos en directorio
+    • x (execute/1): Ejecutar archivo o acceder a directorio
+Ejemplos prácticos:
+# Archivo ejecutable para el propietario
+-rwx------ = 700
+
+# Archivo legible por todos, escribible solo por propietario
+-rw-r--r-- = 644
+
+# Directorio accesible por todos
+drwxr-xr-x = 755
+
+# Archivo de configuración sensible
+-rw------- = 600
+
+🛠️ MODIFICACIÓN DE PERMISOS
+Comando chmod - Cambiar Permisos
+Notación octal (numérica):
+# Dar permisos completos al propietario, lectura a grupo y otros
+chmod 744 archivo.txt
+
+# Permisos típicos para archivos de configuración
+chmod 644 config.txt
+
+# Permisos para directorios
+chmod 755 directorio/
+
+# Permisos restrictivos para archivos sensibles
+chmod 600 private_key.pem
+
+# Aplicar recursivamente
+chmod -R 755 /var/www/html/
+
+Notación simbólica:
+# Añadir permiso de ejecución al propietario
+chmod u+x script.sh
+
+# Quitar permiso de escritura al grupo
+chmod g-w archivo.txt
+
+# Dar permisos de lectura a todos
+chmod a+r documento.txt
+
+# Múltiples cambios simultáneos
+chmod u+x,g+w,o-r archivo.txt
+
+# Copiar permisos de referencia
+chmod --reference=archivo1.txt archivo2.txt
+
+Ejemplos específicos para seguridad:
+# Archivos de claves SSH
+chmod 600 ~/.ssh/id_rsa
+chmod 644 ~/.ssh/id_rsa.pub
+chmod 700 ~/.ssh/
+
+# Archivos de configuración web
+chmod 644 /etc/apache2/apache2.conf
+chmod 600 /etc/mysql/mysql.conf.d/mysqld.cnf
+
+# Scripts ejecutables
+chmod 755 /usr/local/bin/backup_script.sh
+
+# Logs del sistema
+chmod 640 /var/log/auth.log
+
+Comando chown - Cambiar Propietario
+Cambiar propietario:
+# Cambiar solo el usuario propietario
+sudo chown admin archivo.txt
+
+# Cambiar usuario y grupo
+sudo chown admin:admin archivo.txt
+
+# Cambiar solo el grupo
+sudo chown :www-data archivo.txt
+
+# Aplicar recursivamente
+sudo chown -R admin:admin /home/admin/proyecto/
+
+Ejemplos prácticos:
+# Transferir propiedad de archivos web
+sudo chown -R www-data:www-data /var/www/html/
+
+# Configurar archivos de usuario
+sudo chown admin:admin /home/admin/.bashrc
+
+# Archivos de log específicos
+sudo chown syslog:adm /var/log/custom.log
+
+Comando chgrp - Cambiar Grupo
+# Cambiar grupo de un archivo
+sudo chgrp developers proyecto.txt
+
+# Cambiar grupo recursivamente
+sudo chgrp -R www-data /var/www/
+
+# Cambiar grupo con referencia
+sudo chgrp --reference=archivo1.txt archivo2.txt
+
+GESTIÓN DE USUARIOS
+Comando useradd - Crear Usuarios
+Crear usuario básico:
+# Usuario básico
+sudo useradd juan
+
+# Usuario con directorio home
+sudo useradd -m maria
+
+# Usuario con shell específico
+sudo useradd -m -s /bin/bash carlos
+
+# Usuario con grupo primario específico
+sudo useradd -m -g developers ana
+
+# Usuario con múltiples grupos
+sudo useradd -m -G sudo,www-data,developers luis
+
+# Usuario del sistema (para servicios)
+sudo useradd -r -s /bin/false nginx_user
+
+Opciones importantes:
+    • -m: Crear directorio home
+    • -s: Especificar shell
+    • -g: Grupo primario
+    • -G: Grupos secundarios
+    • -r: Usuario del sistema
+    • -d: Directorio home personalizado
+    • -c: Comentario/descripción
+Comando usermod - Modificar Usuarios
+# Añadir usuario a grupo
+sudo usermod -aG sudo admin
+
+# Cambiar shell del usuario
+sudo usermod -s /bin/zsh admin
+
+# Cambiar directorio home
+sudo usermod -d /home/nuevo_home -m admin
+
+# Bloquear cuenta de usuario
+sudo usermod -L usuario_bloqueado
+
+# Desbloquear cuenta
+sudo usermod -U usuario_desbloqueado
+
+# Cambiar grupo primario
+sudo usermod -g nuevogrupo admin
+
+Comando userdel - Eliminar Usuarios
+# Eliminar usuario (mantiene directorio home)
+sudo userdel juan
+
+# Eliminar usuario y su directorio home
+sudo userdel -r maria
+
+# Forzar eliminación
+sudo userdel -f carlos
+
+Gestión de Contraseñas
+Comando passwd - Cambiar contraseñas:
+# Cambiar tu propia contraseña
+passwd
+
+# Cambiar contraseña de otro usuario (como root)
+sudo passwd juan
+
+# Generar contraseña temporal
+sudo passwd -e maria
+
+# Bloquear contraseña
+sudo passwd -l usuario
+
+# Desbloquear contraseña
+sudo passwd -u usuario
+
+# Ver estado de contraseña
+sudo passwd -S admin
+
+Políticas de contraseñas:
+# Ver configuración de contraseñas
+cat /etc/login.defs | grep PASS
+
+# Configurar expiración de contraseña
+sudo chage -M 90 admin
+
+# Ver información de expiración
+sudo chage -l admin
+
+# Forzar cambio en próximo login
+sudo chage -d 0 admin
+
+GESTIÓN DE GRUPOS
+Comando groupadd - Crear Grupos
+# Crear grupo básico
+sudo groupadd developers
+
+# Crear grupo con GID específico
+sudo groupadd -g 1500 testers
+
+# Crear grupo del sistema
+sudo groupadd -r service_group
+
+Comando groupmod - Modificar Grupos
+# Cambiar nombre del grupo
+sudo groupmod -n nuevo_nombre viejo_nombre
+
+# Cambiar GID del grupo
+sudo groupmod -g 1600 developers
+
+Comando groupdel - Eliminar Grupos
+# Eliminar grupo (solo si no es grupo primario de ningún usuario)
+sudo groupdel developers
+
+Gestión de Membresía de Grupos
+# Ver grupos de un usuario
+groups admin
+id admin
+
+# Ver miembros de un grupo
+getent group sudo
+
+# Añadir usuario a grupo
+sudo gpasswd -a admin developers
+
+# Eliminar usuario de grupo
+sudo gpasswd -d admin developers
+
+# Ver todos los grupos del sistema
+getent group
+
+ARCHIVOS DE CONFIGURACIÓN DE USUARIOS
+Archivo /etc/passwd
+# Ver estructura de usuarios
+cat /etc/passwd
+
+# Formato: usuario:x:UID:GID:comentario:home:shell
+admin:x:1000:1000:Admin User:/home/admin:/bin/bash
+
+Campos explicados:
+    1. Nombre de usuario
+    2. Contraseña (x = en /etc/shadow)
+    3. UID (User ID)
+    4. GID (Group ID primario)
+    5. Comentario/Descripción
+    6. Directorio home
+    7. Shell por defecto
+Archivo /etc/shadow
+# Ver contraseñas encriptadas (solo root)
+sudo cat /etc/shadow
+
+# Formato: usuario:contraseña_hash:última_modificación:min:max:aviso:inactivo:expiración
+
+Archivo /etc/group
+# Ver estructura de grupos
+cat /etc/group
+
+# Formato: grupo:x:GID:miembros
+sudo:x:27:admin
+
+COMANDOS DE CONSULTA
+Información de Usuarios y Grupos
+# Usuario actual
+whoami
+id
+
+# Usuarios conectados
+who
+w
+
+# Último acceso de usuarios
+last
+lastlog
+
+# Información específica de usuario
+finger admin
+getent passwd admin
+
+# Información específica de grupo
+getent group sudo
+
+# Ver todos los usuarios del sistema
+cut -d: -f1 /etc/passwd
+
+# Ver usuarios con UID > 1000 (usuarios regulares)
+awk -F: '$3 >= 1000 {print $1}' /etc/passwd
+
+📚 RECURSOS GRATUITOS PARA HOY
+Recurso Principal: Linux Journey - Users and Groups
+URL: https://linuxjourney.com/lesson/users-and-groups
+Módulos específicos para hoy:
+    • Users and Groups: Gestión completa de usuarios
+    • File Permissions: Sistema de permisos detallado
+    • Process Permissions: Permisos de procesos
+Recurso Complementario: Ubuntu Server Guide - User Management
+URL: https://ubuntu.com/server/docs/security-users
+Secciones relevantes:
+    • User Management: Administración de usuarios
+    • Group Management: Gestión de grupos
+    • Security Considerations: Consideraciones de seguridad
+Recurso de Seguridad: NIST Guidelines
+URL: https://csrc.nist.gov/publications/detail/sp/800-63b/final
+Contenido clave:
+    • Políticas de contraseñas seguras
+    • Gestión de identidades
+    • Mejores prácticas de autenticación
+Herramienta de Práctica: Chmod Calculator
+URL: https://chmod-calculator.com/
+Utilidad:
+    • Calculadora visual de permisos
+    • Conversión entre octal y simbólico
+    • Ejemplos prácticos
+🛠️ EJERCICIOS PRÁCTICOS DEL DÍA
+Laboratorio 1: Gestión de Usuarios
+# 1. Crear usuarios para diferentes roles
+sudo useradd -m -s /bin/bash developer1
+sudo useradd -m -s /bin/bash developer2
+sudo useradd -m -s /bin/bash tester1
+sudo useradd -r -s /bin/false webservice
+
+# 2. Establecer contraseñas
+sudo passwd developer1
+sudo passwd developer2
+sudo passwd tester1
+
+# 3. Crear grupos de trabajo
+sudo groupadd development
+sudo groupadd testing
+sudo groupadd webservices
+
+# 4. Asignar usuarios a grupos
+sudo usermod -aG development developer1
+sudo usermod -aG development developer2
+sudo usermod -aG testing tester1
+sudo usermod -aG webservices webservice
+
+# 5. Verificar configuración
+id developer1
+groups developer2
+getent group development
+
+Laboratorio 2: Configuración de Permisos
+# 1. Crear estructura de proyecto
+mkdir -p ~/proyecto/{src,docs,config,logs}
+
+# 2. Crear archivos de prueba
+touch ~/proyecto/src/app.py
+touch ~/proyecto/docs/README.md
+touch ~/proyecto/config/settings.conf
+touch ~/proyecto/logs/app.log
+
+# 3. Configurar permisos apropiados
+chmod 755 ~/proyecto/
+chmod 644 ~/proyecto/docs/README.md
+chmod 600 ~/proyecto/config/settings.conf
+chmod 664 ~/proyecto/logs/app.log
+chmod 755 ~/proyecto/src/app.py
+
+# 4. Verificar permisos
+ls -la ~/proyecto/
+ls -la ~/proyecto/src/
+ls -la ~/proyecto/config/
+
+# 5. Cambiar propietarios
+sudo chown -R admin:development ~/proyecto/src/
+sudo chown -R admin:testing ~/proyecto/docs/
+
+Laboratorio 3: Simulación de Entorno Web
+# 1. Crear estructura web
+sudo mkdir -p /var/www/proyecto/{public,private,logs}
+
+# 2. Crear archivos web
+sudo touch /var/www/proyecto/public/index.html
+sudo touch /var/www/proyecto/private/config.php
+sudo touch /var/www/proyecto/logs/access.log
+
+# 3. Configurar permisos web seguros
+sudo chown -R www-data:www-data /var/www/proyecto/
+sudo chmod 755 /var/www/proyecto/
+sudo chmod 755 /var/www/proyecto/public/
+sudo chmod 644 /var/www/proyecto/public/index.html
+sudo chmod 700 /var/www/proyecto/private/
+sudo chmod 600 /var/www/proyecto/private/config.php
+sudo chmod 750 /var/www/proyecto/logs/
+sudo chmod 640 /var/www/proyecto/logs/access.log
+
+# 4. Verificar configuración de seguridad
+ls -la /var/www/proyecto/
+ls -la /var/www/proyecto/public/
+ls -la /var/www/proyecto/private/
+
+
+📊 Progreso general: 4/365 días (1.10%)
+Mañana aprenderemos a gestionar procesos y servicios, elementos críticos para la administración de servidores y la detección de actividades maliciosas. 
