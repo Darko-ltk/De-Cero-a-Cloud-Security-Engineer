@@ -35,7 +35,6 @@ Para evaluar la metodología y calidad técnica del programa, ofrecemos acceso c
 <p> Hacklab365 es un programa de formación técnica especializada diseñado para desarrollar competencias avanzadas en ingeniería de seguridad cloud. El programa cubre la administración de sistemas Linux, implementación de controles de seguridad, arquitecturas cloud seguras y metodologías DevSecOps. </p>
 
 
-$${\color{red}AVISO!\ El\ programa\ Hacklab365\ no\ es\ para\ todos.\ Está\ diseñado\ para\ individuos\ con\ la\ disciplina\ para\ dedicar\ 2\ horas\ diarias\ durante\ 365\ días\ consecutivos\ a\ su\ transformación\ profesional.\ Si\ estás\ dispuesto\ a\ hacer\ esa\ inversión\ en\ ti\ mismo,\ el\ retorno\ será\ exponencial.}$$
 
 ---
 
@@ -582,6 +581,7 @@ La industria necesita profesionales que entiendan la tecnología desde ambos lad
 </div>
 
 
+$${\color{red}AVISO!\ El\ programa\ Hacklab365\ no\ es\ para\ todos.\ Está\ diseñado\ para\ individuos\ con\ la\ disciplina\ para\ dedicar\ 2\ horas\ diarias\ durante\ 365\ días\ consecutivos\ a\ su\ transformación\ profesional.\ Si\ estás\ dispuesto\ a\ hacer\ esa\ inversión\ en\ ti\ mismo,\ el\ retorno\ será\ exponencial.}$$
 
 ---
 
