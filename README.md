@@ -8,9 +8,9 @@
 
 <div align="center">
   <!-- <img src="./assets/hacklab365-logo.png" alt="Hacklab365" width="180"/> -->
-  <h1>Hacklab365: Programa de Especialización en Cloud Security Engineering</h1>
+  <h1>Programa de Especialización en Cloud Security Engineering</h1>
   <p>
-    Programa intensivo de 12 meses para la formación de Cloud Security Engineers
+    12 meses para la formación de Cloud Security Engineers
   </p>
 </div>
 
