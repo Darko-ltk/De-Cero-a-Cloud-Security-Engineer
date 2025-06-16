@@ -1,0 +1,496 @@
+
+DÍA 5: GESTIÓN DE PROCESOS Y SERVICIOS
+
+Objetivo: Dominar la gestión de procesos del sistema y administración de servicios críticos para seguridad
+
+FUNDAMENTOS DE PROCESOS EN LINUX
+¿Qué son los Procesos?
+Un proceso es una instancia en ejecución de un programa. Como Cloud Security Engineer, la gestión de procesos es crítica porque:
+    • Detección de malware: Procesos anómalos pueden indicar compromiso del sistema
+    • Análisis forense: Los procesos revelan actividad del atacante
+    • Optimización de recursos: Procesos mal gestionados crean vulnerabilidades
+    • Monitoreo de seguridad: Procesos críticos deben estar siempre funcionando
+Tipos de Procesos
+Procesos de usuario:
+    • Ejecutados por usuarios del sistema
+    • Tienen permisos limitados
+    • Pueden ser terminados por el usuario propietario
+Procesos del sistema (daemons):
+    • Ejecutados en segundo plano
+    • Proporcionan servicios críticos (SSH, web, base de datos)
+    • Generalmente ejecutados como root o usuarios específicos
+Procesos zombie:
+    • Procesos terminados que no han sido limpiados
+    • Pueden indicar problemas de programación o ataques
+Estados de Procesos
+# Ver estados de procesos
+ps aux
+
+# Estados posibles:
+# R - Running (ejecutándose)
+# S - Sleeping (durmiendo)
+# D - Uninterruptible sleep (espera de I/O)
+# Z - Zombie (terminado pero no limpiado)
+# T - Stopped (detenido)
+# X - Dead (muerto)
+
+🔍 COMANDOS DE GESTIÓN DE PROCESOS
+Comando ps - Visualizar Procesos
+Sintaxis básica:
+# Procesos del usuario actual
+ps
+
+# Todos los procesos del sistema
+ps aux
+
+# Procesos en formato árbol (jerarquía)
+ps auxf
+
+# Procesos de un usuario específico
+ps -u admin
+
+# Procesos con información extendida
+ps -eo pid,ppid,cmd,user,time,etime,pcpu,pmem
+
+Análisis de salida ps aux:
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.1 168548 11984 ?        Ss   10:30   0:01 /sbin/init
+admin     1234  0.5  2.1 123456 87654 pts/0    S+   11:00   0:05 python3 app.py
+
+Campos explicados:
+    • USER: Usuario propietario del proceso
+    • PID: Process ID (identificador único)
+    • %CPU: Porcentaje de CPU utilizado
+    • %MEM: Porcentaje de memoria utilizado
+    • VSZ: Memoria virtual total
+    • RSS: Memoria física utilizada
+    • TTY: Terminal asociado
+    • STAT: Estado del proceso
+    • START: Hora de inicio
+    • TIME: Tiempo total de CPU utilizado
+    • COMMAND: Comando ejecutado
+Comando top - Monitor en Tiempo Real
+# Monitor interactivo de procesos
+top
+
+# Comandos dentro de top:
+# q - salir
+# k - matar proceso (kill)
+# r - cambiar prioridad (renice)
+# M - ordenar por memoria
+# P - ordenar por CPU
+# u - filtrar por usuario
+# 1 - mostrar todos los CPUs
+# h - ayuda
+
+Interpretación de la salida de top:
+top - 11:30:45 up 1 day,  2:15,  2 users,  load average: 0.15, 0.25, 0.20
+Tasks: 123 total,   1 running, 122 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  2.3 us,  1.1 sy,  0.0 ni, 96.4 id,  0.2 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   3934.4 total,   2156.8 free,    892.1 used,    885.5 buff/cache
+MiB Swap:   2048.0 total,   2048.0 free,      0.0 used.   2834.2 avail Mem
+
+Significado de las métricas:
+    • load average: Carga promedio del sistema (1, 5, 15 minutos)
+    • us: Tiempo de CPU en espacio de usuario
+    • sy: Tiempo de CPU en espacio del kernel
+    • id: Tiempo de CPU inactivo
+    • wa: Tiempo esperando I/O
+Comando htop - Monitor Avanzado
+# Instalar htop (monitor mejorado)
+sudo apt install htop
+
+# Ejecutar htop
+htop
+
+# Ventajas sobre top:
+# - Interfaz más intuitiva
+# - Navegación con mouse
+# - Filtros avanzados
+# - Visualización de árbol de procesos
+# - Colores para mejor legibilidad
+
+Comando pgrep y pkill - Búsqueda y Terminación
+# Buscar procesos por nombre
+pgrep ssh
+pgrep -f "python.*app.py"
+
+# Buscar con información adicional
+pgrep -l ssh
+pgrep -u admin python
+
+# Matar procesos por nombre
+pkill firefox
+pkill -u admin python
+
+# Matar con señal específica
+pkill -9 proceso_colgado
+pkill -TERM apache2
+
+SEÑALES DE PROCESOS
+Tipos de Señales
+Las señales son mecanismos de comunicación entre procesos y el kernel:
+# Ver todas las señales disponibles
+kill -l
+
+# Señales más importantes:
+# SIGTERM (15) - Terminación elegante (por defecto)
+# SIGKILL (9)  - Terminación forzada (no se puede ignorar)
+# SIGHUP (1)   - Hang up (recargar configuración)
+# SIGINT (2)   - Interrupción (Ctrl+C)
+# SIGSTOP (19) - Pausar proceso
+# SIGCONT (18) - Continuar proceso pausado
+
+Comando kill - Enviar Señales
+# Terminar proceso elegantemente
+kill 1234
+
+# Terminar proceso forzadamente
+kill -9 1234
+kill -KILL 1234
+
+# Recargar configuración de servicio
+kill -HUP 1234
+kill -1 1234
+
+# Pausar proceso
+kill -STOP 1234
+
+# Continuar proceso pausado
+kill -CONT 1234
+
+# Matar todos los procesos de un usuario
+sudo pkill -u usuario_malicioso
+
+🎛️ CONTROL DE TRABAJOS (JOBS)
+Ejecución en Primer y Segundo Plano
+# Ejecutar comando en segundo plano
+comando &
+
+# Ejemplo: servidor web de desarrollo
+python3 -m http.server 8080 &
+
+# Ver trabajos en ejecución
+jobs
+
+# Traer trabajo a primer plano
+fg %1
+
+# Enviar trabajo a segundo plano
+bg %1
+
+# Suspender trabajo actual (Ctrl+Z)
+# Luego continuar en segundo plano:
+bg
+
+Comando nohup - Procesos Persistentes
+# Ejecutar comando que persiste después del logout
+nohup python3 aplicacion.py &
+
+# Redirigir salida a archivo específico
+nohup ./script.sh > output.log 2>&1 &
+
+# Ver procesos nohup
+ps aux | grep nohup
+
+Comando screen y tmux - Sesiones Persistentes
+# Instalar screen
+sudo apt install screen
+
+# Crear nueva sesión
+screen -S mi_sesion
+
+# Listar sesiones
+screen -ls
+
+# Reconectar a sesión
+screen -r mi_sesion
+
+# Desconectar sesión (Ctrl+A, D)
+
+# Instalar tmux (alternativa moderna)
+sudo apt install tmux
+
+# Crear sesión tmux
+tmux new-session -s trabajo
+
+# Listar sesiones tmux
+tmux list-sessions
+
+# Reconectar a sesión tmux
+tmux attach-session -t trabajo
+
+🔧 GESTIÓN DE SERVICIOS CON SYSTEMD
+¿Qué es systemd?
+systemd es el sistema de inicialización y gestión de servicios en Ubuntu Server. Como Cloud Security Engineer, debes dominarlo porque:
+    • Servicios críticos: SSH, firewall, web servers dependen de systemd
+    • Logs centralizados: journald proporciona logging unificado
+    • Seguridad: Control granular de permisos y recursos
+    • Automatización: Inicio automático de servicios críticos
+Comando systemctl - Control de Servicios
+Gestión básica de servicios:
+# Ver estado de un servicio
+systemctl status ssh
+
+# Iniciar servicio
+sudo systemctl start apache2
+
+# Detener servicio
+sudo systemctl stop apache2
+
+# Reiniciar servicio
+sudo systemctl restart nginx
+
+# Recargar configuración sin reiniciar
+sudo systemctl reload nginx
+
+# Habilitar servicio para inicio automático
+sudo systemctl enable ssh
+
+# Deshabilitar servicio
+sudo systemctl disable apache2
+
+# Ver si servicio está habilitado
+systemctl is-enabled ssh
+
+# Ver si servicio está activo
+systemctl is-active nginx
+
+Listado y búsqueda de servicios:
+# Listar todos los servicios
+systemctl list-units --type=service
+
+# Listar servicios activos
+systemctl list-units --type=service --state=active
+
+# Listar servicios fallidos
+systemctl list-units --type=service --state=failed
+
+# Buscar servicios por patrón
+systemctl list-units --type=service | grep ssh
+
+# Ver servicios habilitados para inicio automático
+systemctl list-unit-files --type=service --state=enabled
+
+Análisis de Estado de Servicios
+# Estado detallado de servicio
+systemctl status ssh
+
+# Salida típica:
+● ssh.service - OpenBSD Secure Shell server
+     Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)
+     Active: active (running) since Wed 2025-06-19 10:30:15 UTC; 2h 15min ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+    Process: 1234 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+   Main PID: 1235 (sshd)
+      Tasks: 1 (limit: 4915)
+     Memory: 2.1M
+        CPU: 15ms
+     CGroup: /system.slice/ssh.service
+             └─1235 /usr/sbin/sshd -D
+
+Interpretación del estado:
+    • Loaded: Servicio cargado y ubicación del archivo de configuración
+    • Active: Estado actual (active/inactive/failed)
+    • Main PID: Proceso principal del servicio
+    • Tasks: Número de tareas/hilos
+    • Memory/CPU: Uso de recursos
+    • CGroup: Grupo de control para gestión de recursos
+MONITOREO DE RECURSOS DEL SISTEMA
+Comando free - Memoria del Sistema
+# Información de memoria
+free -h
+
+# Salida típica:
+               total        used        free      shared  buff/cache   available
+Mem:           3.8Gi       856Mi       2.1Gi        12Mi       885Mi       2.8Gi
+Swap:          2.0Gi          0B       2.0Gi
+
+# Monitoreo continuo cada 2 segundos
+free -h -s 2
+
+Comando df - Espacio en Disco
+# Uso de disco por sistemas de archivos
+df -h
+
+# Uso de disco con tipos de sistema de archivos
+df -hT
+
+# Uso de inodos
+df -i
+
+# Monitorear directorio específico
+du -sh /var/log/
+du -h --max-depth=1 /var/
+
+Comando iostat - Estadísticas de I/O
+# Instalar herramientas de sistema
+sudo apt install sysstat
+
+# Estadísticas de I/O
+iostat
+
+# Monitoreo continuo cada 2 segundos
+iostat 2
+
+# Estadísticas extendidas
+iostat -x 2
+
+Comando sar - Reporte de Actividad del Sistema
+# Uso de CPU
+sar -u 1 5
+
+# Uso de memoria
+sar -r 1 5
+
+# Actividad de red
+sar -n DEV 1 5
+
+# Actividad de disco
+sar -d 1 5
+
+# Reporte histórico (si está configurado)
+sar -u -f /var/log/sysstat/saXX
+
+RECURSOS GRATUITOS PARA HOY
+Recurso Principal: Linux Journey - Processes
+URL: https://linuxjourney.com/lesson/monitor-processes-ps-command
+Módulos específicos para hoy:
+    • Monitor Processes: Comando ps y variantes
+    • Process Control: Señales y control de trabajos
+    • Job Control: Gestión de trabajos en background
+Recurso Complementario: Ubuntu Server Guide - Process Management
+URL: https://ubuntu.com/server/docs/service-management
+Secciones relevantes:
+    • Service Management: Gestión con systemd
+    • Process Monitoring: Monitoreo de procesos
+    • System Resources: Gestión de recursos
+Recurso de Systemd: Digital Ocean Guide
+URL: https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units
+Contenido clave:
+    • Gestión completa de servicios systemd
+    • Configuración de servicios personalizados
+    • Troubleshooting de servicios
+Herramienta de Práctica: Htop Explained
+URL: https://peteris.rocks/blog/htop/
+Utilidad:
+    • Explicación detallada de htop
+    • Interpretación de métricas
+    • Optimización de rendimiento
+🛠️ EJERCICIOS PRÁCTICOS DEL DÍA
+Laboratorio 1: Análisis de Procesos del Sistema
+# 1. Explorar procesos actuales
+ps aux | head -20
+
+# 2. Identificar procesos que consumen más CPU
+ps aux --sort=-%cpu | head -10
+
+# 3. Identificar procesos que consumen más memoria
+ps aux --sort=-%mem | head -10
+
+# 4. Buscar procesos específicos
+pgrep -l ssh
+pgrep -l systemd
+
+# 5. Analizar jerarquía de procesos
+ps auxf | grep -A 5 -B 5 ssh
+
+# 6. Crear reporte de procesos
+echo "=== REPORTE DE PROCESOS $(date) ===" > ~/proceso_report.txt
+echo "=== TOP 5 CPU ===" >> ~/proceso_report.txt
+ps aux --sort=-%cpu | head -6 >> ~/proceso_report.txt
+echo "=== TOP 5 MEMORIA ===" >> ~/proceso_report.txt
+ps aux --sort=-%mem | head -6 >> ~/proceso_report.txt
+
+Laboratorio 2: Gestión de Servicios Críticos
+# 1. Verificar servicios críticos de seguridad
+systemctl status ssh
+systemctl status ufw
+systemctl status fail2ban
+
+# 2. Analizar servicios en ejecución
+systemctl list-units --type=service --state=running
+
+# 3. Identificar servicios fallidos
+systemctl list-units --type=service --state=failed
+
+# 4. Verificar servicios habilitados para inicio automático
+systemctl list-unit-files --type=service --state=enabled
+
+# 5. Crear servicio personalizado de monitoreo
+sudo tee /etc/systemd/system/monitor-security.service > /dev/null <<EOF
+[Unit]
+Description=Security Monitor Service
+After=network.target
+
+[Service]
+Type=simple
+User=admin
+ExecStart=/bin/bash -c 'while true; do echo "$(date): Security check" >> /var/log/security-monitor.log; sleep 300; done'
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# 6. Habilitar y probar el servicio
+sudo systemctl daemon-reload
+sudo systemctl enable monitor-security.service
+sudo systemctl start monitor-security.service
+sudo systemctl status monitor-security.service
+
+Laboratorio 3: Monitoreo de Recursos y Rendimiento
+# 1. Crear script de monitoreo
+cat > ~/system_monitor.sh << 'EOF'
+#!/bin/bash
+echo "=== MONITOREO DEL SISTEMA $(date) ==="
+echo "=== CARGA DEL SISTEMA ==="
+uptime
+echo ""
+echo "=== USO DE MEMORIA ==="
+free -h
+echo ""
+echo "=== USO DE DISCO ==="
+df -h
+echo ""
+echo "=== TOP 5 PROCESOS POR CPU ==="
+ps aux --sort=-%cpu | head -6
+echo ""
+echo "=== TOP 5 PROCESOS POR MEMORIA ==="
+ps aux --sort=-%mem | head -6
+echo ""
+echo "=== SERVICIOS CRÍTICOS ==="
+systemctl is-active ssh ufw
+echo "================================"
+EOF
+
+# 2. Hacer ejecutable el script
+chmod +x ~/system_monitor.sh
+
+# 3. Ejecutar monitoreo
+./system_monitor.sh
+
+# 4. Programar monitoreo automático (cada 10 minutos)
+# Añadir a crontab:
+# */10 * * * * /home/admin/system_monitor.sh >> /var/log/system_monitor.log
+
+# 5. Simular carga del sistema para pruebas
+# Terminal 1: Simular carga CPU
+yes > /dev/null &
+PID_CPU=$!
+
+# Terminal 2: Monitorear en tiempo real
+htop
+
+# Terminar simulación
+kill $PID_CPU
+
+# 6. Analizar logs del sistema
+sudo tail -f /var/log/syslog | grep -E "(error|warning|critical)"
+
+
+
+
+📊 Progreso general: 5/365 días (1.37%)
+Mañana aprenderemos la gestión de paquetes y actualizaciones de seguridad, elementos fundamentales para mantener sistemas seguros y actualizados contra las últimas amenazas. ¡Tu expertise en administración de sistemas se consolida cada día!
