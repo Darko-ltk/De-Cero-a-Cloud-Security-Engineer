@@ -579,18 +579,20 @@ Al completar los 365 días, habrás:
 La industria necesita profesionales que entiendan la tecnología desde ambos lados. Las organizaciones buscan desesperadamente individuos que puedan tanto construir sistemas robustos como identificar sus debilidades antes que los atacantes.
 
 
----
-
-
-<div align="center">
-  <small>Copyright © 2025 - Darko-ltk - Todos los derechos reservados</small>
-</div>
-
 <!-- Sección de contenido gratuito para futura implementación -->
 <div align="center">
   <a href="https://github.com/Darko-ltk/De-Cero-a-Cloud-Security-Engineer/tree/391822a69ed53994ee9c2f3c5359e1236c10e6a0/modulo-1-linux-admin">
     <img src="https://img.shields.io/badge/🐧_Acceder_al_Contenido_Gratuito-Linux_Admin-2E8B57?style=for-the-badge&logo=linux&logoColor=white" alt="Acceder al Contenido Gratuito">
   </a>
+</div>
+
+
+
+---
+
+
+<div align="center">
+  <small>Copyright © 2025 - Darko-ltk - Todos los derechos reservados</small>
 </div>
 
 
