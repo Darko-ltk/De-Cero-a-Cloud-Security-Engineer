@@ -35,11 +35,18 @@ Para evaluar la metodología y calidad técnica del programa, ofrecemos acceso c
 <p> Hacklab365 es un programa de formación técnica especializada diseñado para desarrollar competencias avanzadas en ingeniería de seguridad cloud. El programa cubre la administración de sistemas Linux, implementación de controles de seguridad, arquitecturas cloud seguras y metodologías DevSecOps. </p>
 
 ---
-<div align="center">
-  <img src="https://img.shields.io/badge/⚠️_AVISO_IMPORTANTE-red?style=for-the-badge" alt="Aviso Importante">
-</div>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 60" fill="none">
+    <text x="10" y="20" fill="#ff0000" font-family="Arial, sans-serif" font-size="14" font-weight="bold">
+        AVISO! El programa Hacklab365 no es para todos. Está diseñado para individuos
+    </text>
+    <text x="10" y="35" fill="#ff0000" font-family="Arial, sans-serif" font-size="14" font-weight="bold">
+        con la disciplina para dedicar 2 horas diarias durante 365 días consecutivos
+    </text>
+    <text x="10" y="50" fill="#ff0000" font-family="Arial, sans-serif" font-size="14" font-weight="bold">
+        a su transformación profesional. Si estás dispuesto a hacer esa inversión en ti mismo, el retorno será exponencial.
+    </text>
+</svg>
 
-$${\color{red}\textbf{El\ programa\ Hacklab365\ no\ es\ para\ todos.\ Está\ diseñado\ para\ individuos\ con\ la\ disciplina\ para\ dedicar\ 2\ horas\ diarias\ durante\ 365\ días\ consecutivos\ a\ su\ transformación\ profesional.\ Si\ estás\ dispuesto\ a\ hacer\ esa\ inversión\ en\ ti\ mismo,\ el\ retorno\ será\ exponencial.}}$$
 
 
 ### Competencias Técnicas Desarrolladas
