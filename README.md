@@ -587,7 +587,12 @@ La industria necesita profesionales que entiendan la tecnología desde ambos lad
 </div>
 
 <!-- Sección de contenido gratuito para futura implementación -->
-<h2 id="semana-1-contenido-de-evaluación"></h2>
+<div align="center">
+  <a href="https://github.com/Darko-ltk/hacklab365/tree/main/modulos/modulo-1-linux-admin">
+    <img src="https://img.shields.io/badge/🐧_Acceder_al_Contenido_Gratuito-Linux_Admin-2E8B57?style=for-the-badge&logo=linux&logoColor=white" alt="Acceder al Contenido Gratuito">
+  </a>
+</div>
+
 
 <!-- 
     ### PRÓXIMOS PASOS ###
