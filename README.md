@@ -1,3 +1,4 @@
+
 <!-- 
     ### NOTAS TÉCNICAS ###
     1.  README.md optimizado para profesionales de IT y ciberseguridad
@@ -6,8 +7,19 @@
 -->
 
 <div align="center">
-  <a href="https://github.com/Darko-ltk/hacklab365/tree/main/modulos/modulo-1-linux-admin">
-    <img src="https://img.shields.io/badge/🐧_Acceder_al_Contenido_Gratuito-Linux_Admin-2E8B57?style=for-the-badge&logo=linux&logoColor=white" alt="Acceder al Contenido Gratuito">
+  <!-- <img src="./assets/hacklab365-logo.png" alt="Hacklab365" width="180"/> -->
+  <h1>Hacklab365: Programa de Especialización en Cloud Security Engineering</h1>
+  <p>
+    Programa intensivo de 12 meses para la formación de Cloud Security Engineers
+  </p>
+</div>
+
+<div align="center">
+  <img src="https://img.shields.io/badge/Status-Production_Ready-success" alt="Status">
+  <img src="https://img.shields.io/badge/Version-2025.1.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/License-Proprietary-red" alt="License">
+  <a href="https://www.linkedin.com/in/tu-perfil/">
+    <img src="https://img.shields.io/badge/Contact-LinkedIn-0077B5" alt="LinkedIn">
   </a>
 </div>
 
@@ -20,10 +32,8 @@ Para evaluar la metodología y calidad técnica del programa, ofrecemos acceso c
 
 <div align="center">
   <a href="https://github.com/Darko-ltk/hacklab365/tree/main/modulos/modulo-1-linux-admin">
-    <img src="https://img.shields.io/badge/🐧_SEMANA_1_GRATUITA-Fundamentos_Linux-success?style=for-the-badge&logo=linux&logoColor=white&labelColor=2E8B57" alt="Semana 1 Gratuita">
+    <img src="https://img.shields.io/badge/🐧_Acceder_al_Contenido_Gratuito-Linux_Admin-2E8B57?style=for-the-badge&logo=linux&logoColor=white" alt="Acceder al Contenido Gratuito">
   </a>
-  <br>
-  <small><em>7 días de contenido profesional sin coste</em></small>
 </div>
 
 
