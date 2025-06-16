@@ -18,11 +18,11 @@ Este programa está meticulosamente diseñado para:
 
 Al completar el programa, no solo habrás adquirido conocimientos, sino que habrás desarrollado un perfil profesional sólido y demandado, especializado en:
 
-*   **🛡️ Administración Avanzada de Servidores Linux**: Desde la instalación hasta la orquestación con Kubernetes.
-*   **🔐 Implementación de Medidas de Seguridad (Hardening)**: Aplicación de benchmarks como CIS y frameworks de seguridad.
-*   **☁️ Arquitecturas Cloud Seguras**: Diseño, despliegue y protección de infraestructuras en AWS.
-*   **🚀 DevSecOps y Automatización**: Integración de la seguridad en pipelines CI/CD con Terraform y Ansible.
-*   **🔎 Respuesta a Incidentes y Threat Hunting**: Uso de SIEMs como ELK Stack y plataformas como TheHive.
+*   ** Administración Avanzada de Servidores Linux**: Desde la instalación hasta la orquestación con Kubernetes.
+*   ** Implementación de Medidas de Seguridad (Hardening)**: Aplicación de benchmarks como CIS y frameworks de seguridad.
+*   ** Arquitecturas Cloud Seguras**: Diseño, despliegue y protección de infraestructuras en AWS.
+*   ** DevSecOps y Automatización**: Integración de la seguridad en pipelines CI/CD con Terraform y Ansible.
+*   ** Respuesta a Incidentes y Threat Hunting**: Uso de SIEMs como ELK Stack y plataformas como TheHive.
 
 ### Certificaciones que Prepararás
 
