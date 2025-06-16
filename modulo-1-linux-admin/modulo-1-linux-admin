@@ -1,0 +1,278 @@
+Arrancamos maquinas hacia un viaje largo y duro pero con grandes resultados.
+No solo hay que seguir los pasos, tambien hay que utilizar los recursos que iré aportando, son necessarios en esta carrera de aprendizaje, sino no
+estareis a la altura, intentaré aportar recursos publicos y gratuitos en todo momento, asi que utilizarlos, son valiosos! 
+
+Empezamos! 
+
+DIA 1- INSTALACIÓN DEL HIPERVISOR
+
+¿VirtualBox o VMware?
+
+Para tu formación de 12 meses, VirtualBox es la elección correcta por estas razones técnicas:
+
+VirtualBox - Ventajas:
+
+    Gratuito y open source: Sin limitaciones de licencia
+
+    Multiplataforma: Funciona en Windows, macOS y Linux
+
+    Snapshots ilimitados: Fundamental para experimentación
+
+    Red avanzada: NAT, Bridge, Host-only, Internal
+
+    Extensiones Guest: Mejor integración con el sistema anfitrión
+
+    API completa: Para automatización futura con scripts
+
+VMware Workstation - Limitaciones:
+
+    Costo: €279 de licencia
+
+    Snapshots limitados: En versión gratuita
+
+    Menos flexible: Para configuraciones de red complejas
+
+Proceso de Instalación VirtualBox
+
+Paso 1: Descarga
+Ve a la página oficial: https://www.virtualbox.org/wiki/Downloads
+
+Paso 2: Verificación del sistema
+Antes de instalar, verifica que tu sistema cumple los requisitos:
+
+    Procesador: Compatible con virtualización (Intel VT-x o AMD-V)
+
+    RAM: Mínimo 8GB (recomendado 16GB para múltiples VMs)
+
+    Espacio libre: Al menos 100GB para laboratorio completo
+
+    Sistema operativo: Windows 10/11, macOS 10.15+, o Linux moderno
+
+Paso 3: Instalación
+
+    Ejecuta el instalador con permisos de administrador
+
+    Acepta la instalación de drivers de red (necesarios para networking avanzado)
+
+    Instala las extensiones VirtualBox Extension Pack
+
+    Reinicia el sistema si es solicitado
+
+Paso 4: Verificación
+Abre VirtualBox y verifica que aparece la interfaz principal sin errores.
+
+DESCARGA DE UBUNTU SERVER 22.04 LTS
+¿Por qué Ubuntu Server 22.04 LTS?
+
+Ubuntu Server 22.04 LTS es la elección estratégica para tu carrera por estas razones:
+
+Adopción empresarial:
+
+    67% de las empresas usan Ubuntu Server en producción
+
+    Canonical ofrece soporte empresarial de 10 años
+
+    OpenStack, Kubernetes, Docker tienen mejor soporte en Ubuntu
+
+Ventajas técnicas:
+
+    LTS (Long Term Support): Actualizaciones de seguridad hasta 2027
+
+    Kernel 5.15: Soporte para hardware moderno y contenedores
+
+    Snaps integrados: Gestión de aplicaciones empresariales
+
+    Netplan: Configuración de red declarativa y moderna
+
+    Cloud-init: Automatización de despliegues cloud
+
+Ecosistema de seguridad:
+
+    AppArmor: Habilitado por defecto
+
+    UFW (Uncomplicated Firewall): Gestión simplificada de iptables
+
+    Fail2ban: Protección contra ataques de fuerza bruta
+
+    AIDE: Detección de intrusiones en archivos
+
+Proceso de Descarga
+
+Enlace oficial: https://ubuntu.com/download/server
+
+Especificaciones del archivo:
+
+    Nombre: ubuntu-22.04.x-live-server-amd64.iso
+
+    Tamaño: Aproximadamente 1.4GB
+
+    Arquitectura: AMD64 (compatible con Intel y AMD de 64 bits)
+
+    Checksum: Siempre verifica la integridad con SHA256
+
+Verificación de integridad (CRÍTICO para seguridad):
+
+bash
+# En Linux/macOS
+sha256sum ubuntu-22.04.x-live-server-amd64.iso
+
+# En Windows (PowerShell)
+Get-FileHash ubuntu-22.04.x-live-server-amd64.iso -Algorithm SHA256
+
+Compara el resultado con el hash oficial publicado en la página de descarga.
+
+CREACIÓN DE LA MÁQUINA VIRTUAL
+Especificaciones Técnicas Optimizadas
+
+Estas especificaciones están calculadas para soportar todas las prácticas de los próximos 12 meses:
+
+Configuración base:
+
+    Nombre: Ubuntu-Server-Lab01
+
+    Tipo: Linux
+
+    Versión: Ubuntu (64-bit)
+
+    RAM: 4096 MB (4GB)
+
+    Procesadores: 2 cores virtuales
+
+    Disco duro: 50GB (expansión dinámica)
+
+    Red: NAT (para acceso a internet)
+
+    Audio: Deshabilitado (no necesario para servidor)
+
+Configuraciones avanzadas:
+
+    Aceleración: Habilitar VT-x/AMD-V
+
+    PAE/NX: Habilitado
+
+    Clipboard: Bidireccional
+
+    Drag'n'Drop: Bidireccional
+
+    Carpetas compartidas: Configurar después de instalación
+
+¿Por qué estas especificaciones?
+
+4GB de RAM: Suficiente para:
+
+    Sistema base Ubuntu Server (512MB)
+
+    Servicios web Apache/Nginx (256MB)
+
+    Base de datos MySQL/PostgreSQL (512MB)
+
+    Contenedores Docker (1GB)
+
+    Herramientas de monitoreo (512MB)
+
+    Buffer para picos de uso (1GB)
+
+50GB de disco: Distribución planificada:
+
+    Sistema operativo base: 8GB
+
+    Logs y temporales: 5GB
+
+    Aplicaciones y servicios: 10GB
+
+    Bases de datos de prueba: 5GB
+
+    Backups y snapshots: 10GB
+
+    Espacio libre para crecimiento: 12GB
+
+2 cores virtuales: Permite:
+
+    Compilación de software
+
+    Múltiples servicios concurrentes
+
+    Simulación de carga real
+
+    Pruebas de rendimiento
+
+Proceso de Creación Paso a Paso
+
+Paso 1: Crear nueva VM
+
+    Clic en "Nueva" en VirtualBox
+
+    Nombre: "Ubuntu-Server-Lab01"
+
+    Carpeta de máquina: Elige ubicación con suficiente espacio
+
+    Tipo: Linux
+
+    Versión: Ubuntu (64-bit)
+
+Paso 2: Asignación de memoria
+
+    Arrastra el slider a 4096 MB
+
+    Verifica que no supere el 50% de tu RAM física
+
+Paso 3: Disco duro virtual
+
+    Selecciona "Crear un disco duro virtual ahora"
+
+    Tipo: VDI (VirtualBox Disk Image)
+
+    Almacenamiento: Reservado dinámicamente
+
+    Tamaño: 50.00 GB
+
+Paso 4: Configuración avanzada
+Antes de iniciar, modifica la configuración:
+
+    Sistema → Procesador: 2 CPUs
+
+    Sistema → Aceleración: Habilitar VT-x/AMD-V
+
+    Red → Adaptador 1: NAT
+
+    Almacenamiento: Añadir el ISO de Ubuntu Server
+
+RECURSOS DE APRENDIZAJE PARA HOY
+
+Recurso Principal: Linux Journey
+
+URL: https://linuxjourney.com
+Módulos para hoy:
+
+    Getting Started
+
+    Command Line
+
+    Text-Fu
+
+¿Por qué Linux Journey?
+
+    Interactivo: Ejercicios prácticos en cada lección
+
+    Progresivo: Desde básico hasta avanzado
+
+    Gratuito: Sin registros ni pagos
+
+    Actualizado: Contenido revisado regularmente
+
+Recurso Complementario: Ubuntu Server Guide
+
+URL: https://ubuntu.com/server/docs
+Secciones relevantes:
+
+    Installation guide
+
+    Network configuration
+
+    Package management
+
+Documentación de Referencia
+
+    VirtualBox Manual: https://www.virtualbox.org/manual/
+
+    Ubuntu Wiki: https://help.ubuntu.com/
